@@ -68,6 +68,7 @@
 .actions {
   display: flex;
   gap: 14px;
+  flex-wrap: wrap;
 }
 
 .primary {
@@ -85,6 +86,20 @@
   background: transparent;
   border: 1px solid rgba(255,255,255,.18);
   color: #fff;
+}
+
+@media (max-width: 1024px) {
+  .section {
+    padding: 90px 40px;
+  }
+
+  .container {
+    gap: 56px;
+  }
+
+  .heading {
+    font-size: 40px;
+  }
 }
 
 /* RIGHT GALLERY */
@@ -130,6 +145,19 @@
     gap: 40px;
   }
 
+  .heading {
+    font-size: 34px;
+  }
+
+  .actions {
+    gap: 12px;
+  }
+
+  .primary,
+  .secondary {
+    flex: 1 1 220px;
+  }
+
   .grid {
     position: static;
     height: auto;
@@ -153,5 +181,14 @@
   }
   .container {
     gap: 20px;
+  }
+
+  .heading {
+    font-size: 28px;
+  }
+
+  .primary,
+  .secondary {
+    width: 100%;
   }
 }

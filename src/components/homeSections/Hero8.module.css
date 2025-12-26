@@ -188,7 +188,7 @@
 @media (max-width: 480px) {
   .hero {
     min-height: 30vh;
-    padding: 12px 24px;
+    padding: 12px 16px;
   }
 
   .title {

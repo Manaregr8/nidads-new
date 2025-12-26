@@ -167,10 +167,32 @@
 }
 
 /* Responsive */
+@media (max-width: 1200px) {
+  .section {
+    padding: 100px 60px;
+  }
+
+  .container {
+    gap: 60px;
+  }
+
+  .content h2 {
+    font-size: 38px;
+  }
+}
+
 @media (max-width: 900px) {
   .container {
     grid-template-columns: 1fr;
     gap: 60px;
+  }
+
+  .content h2 {
+    font-size: 34px;
+  }
+
+  .subtext {
+    max-width: 100%;
   }
 }
 
@@ -180,5 +202,18 @@
   }
   .container {
     gap: 28px;
+  }
+
+  .smallCards {
+    grid-template-columns: 1fr;
+  }
+
+  .chart {
+    width: 76px;
+    height: 76px;
+  }
+
+  .content h2 {
+    font-size: 28px;
   }
 }
