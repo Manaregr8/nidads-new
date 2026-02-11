@@ -12,7 +12,7 @@ const fetchBlogs = async (searchParams) => {
   });
 
   if (!res.ok) {
-    throw new Error("Failed to fetch blogs");
+    return { data: [], pagination: { page: 1, totalPages: 1, limit: 0, total: 0 } };
   }
 
   return res.json();
@@ -30,12 +30,7 @@ export default async function BlogPage({ searchParams }) {
   const searchQuery = resolvedParams.search || "";
 
   let data;
-  try {
-    data = await fetchBlogs({ ...resolvedParams, page });
-  } catch (error) {
-    console.error(error?.message || error);
-    data = { data: [], pagination: { page: 1, totalPages: 1, limit: 0, total: 0 } };
-  }
+  data = await fetchBlogs({ ...resolvedParams, page });
 
   return (
     <div className="blog-page">

@@ -1,11 +1,7 @@
 "use client";
 import { useState } from "react";
-<<<<<<< HEAD
 import { usePathname } from "next/navigation";
-
-=======
 import Link from "next/link";
->>>>>>> cebe5191f9bdb787bde53099930d35b98f437890
 import Style from "./navbar.module.css";
 
 export default function Navbar() {

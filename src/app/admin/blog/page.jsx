@@ -13,10 +13,11 @@ const formatDate = (value) =>
 
 export default async function AdminBlogPage() {
   let blogs = [];
+  let databaseUnavailable = false;
   try {
     blogs = await fetchBlogs();
   } catch (error) {
-    console.error(error?.message || error);
+    databaseUnavailable = true;
   }
 
   return (
@@ -32,7 +33,11 @@ export default async function AdminBlogPage() {
         </Link>
       </header>
 
-      {blogs.length ? (
+      {databaseUnavailable ? (
+        <p className="empty">
+          Database connection failed. Update <code>DATABASE_URL</code> in your environment and restart the dev server.
+        </p>
+      ) : blogs.length ? (
         <table className="admin-table">
           <thead>
             <tr>
