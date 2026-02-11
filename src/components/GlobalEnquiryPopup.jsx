@@ -1,29 +1,65 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useEffect, useRef, useState } from "react";
 import dynamic from "next/dynamic";
 
 const PopupEnquiryForm = dynamic(() => import("@/components/PopupEnquiryForm.jsx"), { ssr: false });
 
+const AUTO_OPEN_STORAGE_KEY = "nidads_enquiry_popup_auto_opened_v1";
+
 export default function GlobalEnquiryPopup() {
   const [showEnquiry, setShowEnquiry] = useState(false);
+  const timerRef = useRef(null);
+
+  const hasAutoOpenedBefore = () => {
+    try {
+      return window.localStorage.getItem(AUTO_OPEN_STORAGE_KEY) === "1";
+    } catch {
+      return false;
+    }
+  };
+
+  const markAutoOpened = () => {
+    try {
+      window.localStorage.setItem(AUTO_OPEN_STORAGE_KEY, "1");
+    } catch {
+      // ignore
+    }
+  };
+
+  const openPopup = (reason) => {
+    if (timerRef.current) {
+      clearTimeout(timerRef.current);
+      timerRef.current = null;
+    }
+    // If the user manually opened before the auto timer fires, prevent future auto-opens.
+    if (reason === "auto" || reason === "manual") {
+      markAutoOpened();
+    }
+    setShowEnquiry(true);
+  };
 
   useEffect(() => {
-    // Open popup after 5 seconds
-    const timer = setTimeout(() => {
-      setShowEnquiry(true);
-    }, 5000);
+    // Auto open after 5 seconds, but only once per browser (localStorage).
+    if (!hasAutoOpenedBefore()) {
+      timerRef.current = setTimeout(() => {
+        openPopup("auto");
+      }, 5000);
+    }
 
     // Listen for custom event to open popup
     const handleOpenEnquiry = () => {
-      setShowEnquiry(true);
+      openPopup("manual");
     };
 
-    window.addEventListener('openEnquiryPopup', handleOpenEnquiry);
+    window.addEventListener("openEnquiryPopup", handleOpenEnquiry);
 
     return () => {
-      clearTimeout(timer);
-      window.removeEventListener('openEnquiryPopup', handleOpenEnquiry);
+      if (timerRef.current) {
+        clearTimeout(timerRef.current);
+        timerRef.current = null;
+      }
+      window.removeEventListener("openEnquiryPopup", handleOpenEnquiry);
     };
   }, []);
 
