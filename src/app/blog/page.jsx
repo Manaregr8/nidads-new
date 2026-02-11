@@ -33,7 +33,7 @@ export default async function BlogPage({ searchParams }) {
   try {
     data = await fetchBlogs({ ...resolvedParams, page });
   } catch (error) {
-    console.error(error);
+    console.error(error?.message || error);
     data = { data: [], pagination: { page: 1, totalPages: 1, limit: 0, total: 0 } };
   }
 

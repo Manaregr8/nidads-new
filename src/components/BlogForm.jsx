@@ -13,6 +13,8 @@ const baseState = {
   metaTitle: "",
   metaDescription: "",
   tags: "",
+  keywords: "",
+  schemas: [],
   content: "",
 };
 
@@ -27,13 +29,23 @@ const clientSlugify = (raw = "") =>
 
 const slugHelpId = "blog-form-slug-help";
 const tagsHelpId = "blog-form-tags-help";
+const keywordsHelpId = "blog-form-keywords-help";
+const schemasHelpId = "blog-form-schemas-help";
 
 const BlogForm = ({ initialData = null, mode = "create" }) => {
   const router = useRouter();
+
   const [formValues, setFormValues] = useState(() => ({
     ...baseState,
     ...initialData,
     tags: initialData?.tags?.join(", ") || initialData?.tags || "",
+    keywords: initialData?.keywords?.join(", ") || initialData?.keywords || "",
+    schemas:
+      (initialData?.schemas?.length
+        ? initialData.schemas
+        : [initialData?.schema, initialData?.faqSchema].filter(Boolean))
+        ?.map((s) => (typeof s === "object" ? JSON.stringify(s, null, 2) : s)) ||
+      [],
     content: initialData?.content || "",
     ogImage: initialData?.ogImage || "",
     metaTitle: initialData?.metaTitle || "",
@@ -57,6 +69,27 @@ const BlogForm = ({ initialData = null, mode = "create" }) => {
 
   const setField = (field, value) => {
     setFormValues((prev) => ({ ...prev, [field]: value }));
+  };
+
+  const addSchema = () => {
+    setFormValues((prev) => ({
+      ...prev,
+      schemas: [...prev.schemas, ""],
+    }));
+  };
+
+  const updateSchema = (index, value) => {
+    setFormValues((prev) => ({
+      ...prev,
+      schemas: prev.schemas.map((s, i) => (i === index ? value : s)),
+    }));
+  };
+
+  const removeSchema = (index) => {
+    setFormValues((prev) => ({
+      ...prev,
+      schemas: prev.schemas.filter((_, i) => i !== index),
+    }));
   };
 
   const handleFileChange = async (event) => {
@@ -110,6 +143,8 @@ const BlogForm = ({ initialData = null, mode = "create" }) => {
         metaTitle: formValues.metaTitle?.trim() || "",
         metaDescription: formValues.metaDescription?.trim() || "",
         tags: formValues.tags,
+        keywords: formValues.keywords,
+        schemas: formValues.schemas,
         content: formValues.content,
       };
 
@@ -219,6 +254,19 @@ const BlogForm = ({ initialData = null, mode = "create" }) => {
         </label>
 
         <label>
+          Keywords (SEO)
+          <input
+            type="text"
+            name="keywords"
+            placeholder="design courses, UI UX, interior design"
+            value={formValues.keywords}
+            onChange={(event) => setField("keywords", event.target.value)}
+            aria-describedby={keywordsHelpId}
+          />
+          <small id={keywordsHelpId}>Comma-separated. Used for SEO meta keywords (defaults to tags if empty).</small>
+        </label>
+
+        <label>
           Cover Image URL
           <input
             type="text"
@@ -250,6 +298,59 @@ const BlogForm = ({ initialData = null, mode = "create" }) => {
               : "Only JPEG, PNG, or WebP files are accepted. Images are hosted via ImgBB."}
           </small>
         </label>
+      </div>
+
+      <div className="schemas-section">
+        <div className="schemas-header">
+          <label className="editor-label">Structured Data Schemas (JSON-LD)</label>
+          <button type="button" className="btn btn--secondary btn--small" onClick={addSchema}>
+            + Add Schema
+          </button>
+        </div>
+        <small id={schemasHelpId} style={{ display: "block", marginBottom: "1rem", color: "#64748b" }}>
+          Add multiple JSON-LD schemas (BlogPosting, FAQPage, etc.). Paste valid JSON (preferred) or a single JSON-LD
+          &lt;script&gt; block. Each entry renders as a separate script tag.
+        </small>
+
+        {formValues.schemas.length === 0 ? (
+          <p
+            style={{
+              padding: "1rem",
+              background: "#f8f9fa",
+              borderRadius: "8px",
+              color: "#64748b",
+              textAlign: "center",
+            }}
+          >
+            No schemas added yet. Click the + Add Schema button to add structured data.
+          </p>
+        ) : (
+          <div className="schemas-list">
+            {formValues.schemas.map((schema, index) => (
+              <div key={index} className="schema-item">
+                <div className="schema-item-header">
+                  <span>Schema {index + 1}</span>
+                  <button
+                    type="button"
+                    className="btn btn--danger btn--small"
+                    onClick={() => removeSchema(index)}
+                    aria-label={`Remove schema ${index + 1}`}
+                  >
+                    Remove
+                  </button>
+                </div>
+                <textarea
+                  name={`schema-${index}`}
+                  rows="8"
+                  placeholder='{"@context":"https://schema.org","@type":"BlogPosting",...}'
+                  value={schema}
+                  onChange={(event) => updateSchema(index, event.target.value)}
+                  aria-label={`Schema ${index + 1} JSON`}
+                />
+              </div>
+            ))}
+          </div>
+        )}
       </div>
 
       <label className="editor-label">

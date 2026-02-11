@@ -4,21 +4,29 @@ import { notFound } from "next/navigation";
 import { getBaseUrl } from "@/lib/base-url";
 import "@/styles/blog.css";
 
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
+
 const fetchBlog = async (slug) => {
   const baseUrl = await getBaseUrl();
-  const res = await fetch(`${baseUrl}/api/blog/${slug}`, {
-    next: { revalidate: 60 },
-  });
+  try {
+    const res = await fetch(`${baseUrl}/api/blog/${slug}`, { cache: "no-store" });
 
-  if (res.status === 404) {
+    if (res.status === 404) {
+      return null;
+    }
+
+    if (!res.ok) {
+      const body = await res.text().catch(() => "");
+      console.error(`fetchBlog failed: ${res.status} ${res.statusText}`, body);
+      return null;
+    }
+
+    return res.json();
+  } catch (error) {
+    console.error("fetchBlog request failed", error);
     return null;
   }
-
-  if (!res.ok) {
-    throw new Error("Failed to fetch blog");
-  }
-
-  return res.json();
 };
 
 const fetchRelated = async (slug) => {
@@ -64,6 +72,8 @@ export async function generateMetadata(props) {
   // Generate image alt text
   const imageAlt = `Cover image for ${blog.title}`;
 
+  const resolvedKeywords = Array.isArray(blog.keywords) && blog.keywords.length ? blog.keywords : blog.tags || [];
+
   return {
     title: metaTitle,
     description: metaDescription,
@@ -91,6 +101,7 @@ export async function generateMetadata(props) {
         }
       ] : undefined,
     },
+    keywords: resolvedKeywords,
     alternates: { canonical },
   };
 }
@@ -110,9 +121,20 @@ export default async function BlogDetails(props) {
   const hasCover = Boolean(cover);
   const imageSrc = hasCover ? cover : "/placeholder.svg";
   const isPlaceholder = !hasCover;
+
   const baseUrl = await getBaseUrl();
   const canonical = `${baseUrl}/blog/${blog.slug}`;
-  const jsonLd = {
+
+  const schemas = [];
+  if (Array.isArray(blog.schemas)) {
+    for (const schema of blog.schemas) {
+      if (schema && typeof schema === "object") schemas.push(schema);
+    }
+  }
+  if (blog.schema && typeof blog.schema === "object") schemas.push(blog.schema);
+  if (blog.faqSchema && typeof blog.faqSchema === "object") schemas.push(blog.faqSchema);
+
+  const fallbackJsonLd = {
     "@context": "https://schema.org",
     "@type": "BlogPosting",
     headline: blog.title,
@@ -137,10 +159,20 @@ export default async function BlogDetails(props) {
 
   return (
     <main id="main-content" className="blog-detail" role="main">
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-      />
+      {schemas.length
+        ? schemas.map((schema, index) => (
+            <script
+              key={index}
+              type="application/ld+json"
+              dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+            />
+          ))
+        : (
+          <script
+            type="application/ld+json"
+            dangerouslySetInnerHTML={{ __html: JSON.stringify(fallbackJsonLd) }}
+          />
+        )}
       <article aria-labelledby="blog-title">
         <header>
           <p className="eyebrow">{new Date(blog.createdAt).toLocaleDateString()}</p>

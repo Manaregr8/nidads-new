@@ -6,6 +6,73 @@ import { ensureAdminApi } from "@/lib/auth";
 import { recordAudit } from "@/lib/audit";
 import { getClientIp } from "@/lib/request-info";
 
+const extractJsonLdFromScriptTag = (raw) => {
+  const trimmed = raw.trim();
+  if (!/^<script\b/i.test(trimmed)) return trimmed;
+
+  const matches = [...trimmed.matchAll(/<script\b[^>]*>([\s\S]*?)<\/script>/gi)];
+  if (matches.length > 1) {
+    throw new Error("Multiple <script> blocks found. Add each JSON-LD as a separate schema entry.");
+  }
+  if (matches.length === 1) {
+    return (matches[0][1] || "").trim();
+  }
+
+  return trimmed
+    .replace(/^<script\b[^>]*>/i, "")
+    .replace(/<\/script>\s*$/i, "")
+    .trim();
+};
+
+const parseSchemaJson = (input) => {
+  if (input === undefined) return undefined;
+  if (input === null) return null;
+  if (typeof input === "string") {
+    const trimmed = input.trim();
+    if (!trimmed) return null;
+
+    const normalized = extractJsonLdFromScriptTag(trimmed);
+    if (/"image"\s*:\s*,/.test(normalized)) {
+      throw new Error(
+        'Invalid schema JSON: "image" is missing a value. Remove the "image" line or set it to a URL string.'
+      );
+    }
+    try {
+      return JSON.parse(normalized);
+    } catch (error) {
+      throw new Error(`Invalid schema JSON: ${error.message || "Unable to parse"}`);
+    }
+  }
+  if (typeof input === "object") {
+    return input;
+  }
+  throw new Error("Invalid schema JSON");
+};
+
+const parseSchemasArray = (schemas) => {
+  if (schemas === undefined) return undefined;
+  if (!Array.isArray(schemas)) return [];
+
+  const parsed = [];
+  for (let i = 0; i < schemas.length; i++) {
+    const schema = schemas[i];
+    if (!schema || (typeof schema === "string" && !schema.trim())) {
+      continue;
+    }
+
+    try {
+      const parsedSchema = parseSchemaJson(schema);
+      if (parsedSchema) {
+        parsed.push(parsedSchema);
+      }
+    } catch (error) {
+      throw new Error(`Schema ${i + 1}: ${error.message}`);
+    }
+  }
+
+  return parsed;
+};
+
 const resolveLookup = async (handle, lookup) => {
   if (lookup === "id") {
     return prisma.blog.findUnique({ where: { id: handle } });
@@ -52,7 +119,7 @@ export async function PUT(request, context) {
     }
 
     const payload = await request.json();
-    const { title, content, coverImg, ogImage, metaTitle, metaDescription, tags, slug } = payload;
+    const { title, content, coverImg, ogImage, metaTitle, metaDescription, tags, keywords, slug, schemas } = payload;
 
     if (!title?.trim() || !content?.trim()) {
       return NextResponse.json({ error: "Title and content are required" }, { status: 400 });
@@ -66,18 +133,46 @@ export async function PUT(request, context) {
     const resolvedSlug = await generateUniqueSlug(slug || title, params.handle);
     const preparedTags = normalizeTags(tags);
 
+    const preparedKeywords = keywords === undefined ? undefined : normalizeTags(keywords);
+
+    let preparedSchemas = undefined;
+    try {
+      preparedSchemas = parseSchemasArray(schemas);
+    } catch (error) {
+      return NextResponse.json({ error: error.message || "Invalid schemas" }, { status: 400 });
+    }
+
+    const sanitizeContent = (html) => {
+      if (!html || typeof html !== "string") return "";
+      return html
+        .replace(/\sstyle=\"[^\"]*\"/gi, "")
+        .replace(/\sstyle='[^']*'/gi, "")
+        .replace(/<\/?font[^>]*>/gi, "")
+        .replace(/\sid=\"docs-internal-guid-[^\"]*\"/gi, "");
+    };
+
+    const data = {
+      title: title.trim(),
+      content: sanitizeContent(content),
+      coverImg: coverImg?.trim() || null,
+      ogImage: ogImage?.trim() || null,
+      metaTitle: metaTitle?.trim() || null,
+      metaDescription: metaDescription?.trim() || null,
+      tags: preparedTags,
+      slug: resolvedSlug,
+    };
+
+    if (preparedKeywords !== undefined) {
+      data.keywords = preparedKeywords;
+    }
+
+    if (preparedSchemas !== undefined) {
+      data.schemas = preparedSchemas;
+    }
+
     const updated = await prisma.blog.update({
       where: { id: params.handle },
-      data: {
-        title: title.trim(),
-        content,
-        coverImg: coverImg?.trim() || null,
-        ogImage: ogImage?.trim() || null,
-        metaTitle: metaTitle?.trim() || null,
-        metaDescription: metaDescription?.trim() || null,
-        tags: preparedTags,
-        slug: resolvedSlug,
-      },
+      data,
     });
 
     const ip = await getClientIp(request);

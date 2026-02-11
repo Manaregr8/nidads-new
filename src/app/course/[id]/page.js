@@ -129,7 +129,7 @@ export default function CourseDetailPage({ params }) {
             {/* WHAT YOU'LL LEARN */}
             <section className={styles.section}>
               <div className={styles.sectionBox}>
-                <h2 className={styles.sectionTitle}>What you'll learn</h2>
+                <h2 className={styles.sectionTitle}>{"What you'll learn"}</h2>
                 <div
                   style={{
                     display: "grid",

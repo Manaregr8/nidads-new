@@ -1,9 +1,15 @@
 "use client";
 import { useState } from "react";
+import { usePathname } from "next/navigation";
 
 import Style from "./navbar.module.css";
 
 export default function Navbar() {
+    const pathname = usePathname();
+    if (pathname?.startsWith("/admin")) {
+        return null;
+    }
+
     const [mobileOpen, setMobileOpen] = useState(false);
 
     // Close mobile menu on nav link click (optional)

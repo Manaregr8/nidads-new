@@ -13,7 +13,7 @@ export default function ContactSection() {
         <div className={styles.header}>
           <h1 className={styles.title}>Contact our team</h1>
           <p className={styles.subtitle}>
-            Got any questions about the product or scaling on our platform? We're here to help.
+            Got any questions about the product or scaling on our platform? {"We're"} here to help.
             Chat to our friendly team 24/7 and get onboard in less than 5 minutes.
           </p>
         </div>

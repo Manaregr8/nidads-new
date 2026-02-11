@@ -16,7 +16,7 @@ export default async function AdminBlogPage() {
   try {
     blogs = await fetchBlogs();
   } catch (error) {
-    console.error(error);
+    console.error(error?.message || error);
   }
 
   return (

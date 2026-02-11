@@ -1,117 +1,82 @@
 "use client";
 
-import { useEffect, useMemo } from "react";
-import { EditorContent, useEditor } from "@tiptap/react";
-import StarterKit from "@tiptap/starter-kit";
-import Placeholder from "@tiptap/extension-placeholder";
-import Link from "@tiptap/extension-link";
-import Image from "@tiptap/extension-image";
+import { useMemo } from "react";
+import dynamic from "next/dynamic";
+import "react-quill-new/dist/quill.snow.css";
 
-const extensions = [
-  StarterKit,
-  Placeholder.configure({ placeholder: "Write your blog content..." }),
-  Link.configure({ openOnClick: false }),
-  Image.configure({ inline: false }),
-];
-
-const controls = [
-  {
-    label: "B",
-    command: (editor) => editor.chain().focus().toggleBold().run(),
-    isActive: (editor) => editor.isActive("bold"),
-  },
-  {
-    label: "I",
-    command: (editor) => editor.chain().focus().toggleItalic().run(),
-    isActive: (editor) => editor.isActive("italic"),
-  },
-  {
-    label: "H2",
-    command: (editor) => editor.chain().focus().toggleHeading({ level: 2 }).run(),
-    isActive: (editor) => editor.isActive("heading", { level: 2 }),
-  },
-  {
-    label: "H3",
-    command: (editor) => editor.chain().focus().toggleHeading({ level: 3 }).run(),
-    isActive: (editor) => editor.isActive("heading", { level: 3 }),
-  },
-  {
-    label: "•",
-    command: (editor) => editor.chain().focus().toggleBulletList().run(),
-    isActive: (editor) => editor.isActive("bulletList"),
-  },
-  {
-    label: "1.",
-    command: (editor) => editor.chain().focus().toggleOrderedList().run(),
-    isActive: (editor) => editor.isActive("orderedList"),
-  },
-  {
-    label: "🔗",
-    command: (editor) => {
-      const previousUrl = editor.getAttributes("link").href;
-      const url = window.prompt("URL:", previousUrl);
-      
-      if (url === null) {
-        return;
-      }
-      
-      if (url === "") {
-        editor.chain().focus().extendMarkRange("link").unsetLink().run();
-        return;
-      }
-      
-      // Ensure URL is absolute - if it doesn't start with http:// or https://, add https://
-      let formattedUrl = url.trim();
-      if (formattedUrl && !formattedUrl.match(/^https?:\/\//i)) {
-        formattedUrl = 'https://' + formattedUrl;
-      }
-      
-      editor.chain().focus().extendMarkRange("link").setLink({ href: formattedUrl }).run();
-    },
-    isActive: (editor) => editor.isActive("link"),
-  },
-];
+// Dynamic import to avoid SSR issues
+const ReactQuill = dynamic(() => import("react-quill-new"), { ssr: false });
 
 const BlogEditor = ({ value, onChange }) => {
-  const editor = useEditor({
-    extensions,
-    content: value || "",
-    immediatelyRender: false,
-    onUpdate: ({ editor: currentEditor }) => {
-      onChange?.(currentEditor.getHTML());
-    },
-  });
+  // Custom toolbar configuration with comprehensive formatting options
+  const modules = useMemo(
+    () => ({
+      toolbar: {
+        container: [
+          // Headers
+          [{ header: [1, 2, 3, false] }],
 
-  useEffect(() => {
-    if (editor && typeof value === "string" && value !== editor.getHTML()) {
-      editor.commands.setContent(value, false);
-    }
-  }, [editor, value]);
+          // Text formatting
+          ["bold", "italic", "underline", "strike"],
 
-  const actions = useMemo(
-    () =>
-      controls.map((control) => ({
-        ...control,
-        run: () => editor && control.command(editor),
-        isActive: () => (editor ? control.isActive(editor) : false),
-      })),
-    [editor]
+          // Text color and background
+          [{ color: [] }, { background: [] }],
+
+          // Lists
+          [{ list: "ordered" }, { list: "bullet" }],
+
+          // Text alignment
+          [{ align: [] }],
+
+          // Indentation
+          [{ indent: "-1" }, { indent: "+1" }],
+
+          // Blockquote and code block
+          ["blockquote", "code-block"],
+
+          // Links and images
+          ["link", "image"],
+
+          // Clean formatting
+          ["clean"],
+        ],
+      },
+      clipboard: {
+        matchVisual: false,
+      },
+    }),
+    []
   );
 
-  if (!editor) {
-    return <div className="editor editor--loading">Loading editor...</div>;
-  }
+  // Quill formats to allow
+  const formats = [
+    "header",
+    "bold",
+    "italic",
+    "underline",
+    "strike",
+    "color",
+    "background",
+    "list",
+    "align",
+    "indent",
+    "blockquote",
+    "code-block",
+    "link",
+    "image",
+  ];
 
   return (
     <div className="editor">
-      <div className="editor__toolbar">
-        {actions.map((control) => (
-          <button key={control.label} type="button" onClick={control.run} className={control.isActive() ? "active" : ""}>
-            {control.label}
-          </button>
-        ))}
-      </div>
-      <EditorContent editor={editor} />
+      <ReactQuill
+        theme="snow"
+        value={value || ""}
+        onChange={onChange}
+        modules={modules}
+        formats={formats}
+        placeholder="Write your blog content..."
+        className="blog-editor-quill"
+      />
     </div>
   );
 };

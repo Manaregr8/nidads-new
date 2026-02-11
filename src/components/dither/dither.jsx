@@ -241,6 +241,7 @@ function DitheredWaves({
         <shaderMaterial
           vertexShader={waveVertexShader}
           fragmentShader={waveFragmentShader}
+          // eslint-disable-next-line react-hooks/refs
           uniforms={waveUniformsRef.current}
         />
       </mesh>

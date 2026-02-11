@@ -20,11 +20,35 @@ export const getBaseUrl = async () => {
       return `${protocol}://${host}`;
     }
   } catch (error) {
-    console.warn("getBaseUrl: falling back to NEXT_PUBLIC_APP_URL", error);
+    if (process.env.NODE_ENV === "development") {
+      console.warn("getBaseUrl: falling back to env", error);
+    }
+  }
+
+  const normalize = (value) => {
+    if (!value || typeof value !== "string") return value;
+    let normalized = value.endsWith("/") ? value.slice(0, -1) : value;
+    if (!/^https?:\/\//i.test(normalized)) {
+      const protocol = normalized.includes("localhost") || normalized.startsWith("127.") ? "http" : "https";
+      normalized = `${protocol}://${normalized}`;
+    }
+    return normalized;
+  };
+
+  if (process.env.NEXT_PUBLIC_BASE_URL) {
+    return normalize(process.env.NEXT_PUBLIC_BASE_URL);
   }
 
   if (process.env.NEXT_PUBLIC_APP_URL) {
-    return process.env.NEXT_PUBLIC_APP_URL;
+    return normalize(process.env.NEXT_PUBLIC_APP_URL);
+  }
+
+  if (process.env.VERCEL_URL) {
+    return `https://${process.env.VERCEL_URL}`;
+  }
+
+  if (process.env.NODE_ENV === "production") {
+    return "https://example.com";
   }
 
   return "http://localhost:3000";
