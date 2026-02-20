@@ -11,9 +11,9 @@ export const metadata = {
   title: "Edit Blog Post",
 };
 
-export default async function EditBlogPage(props) {
-  const params = await props?.params;
-  const id = params?.id;
+export default async function EditBlogPage({ params }) {
+  const resolvedParams = await params;
+  const id = resolvedParams?.id;
   if (!id) {
     notFound();
   }
