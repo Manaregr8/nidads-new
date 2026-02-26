@@ -1,5 +1,5 @@
 .section {
-  padding: 120px 80px;
+  padding: 40px 80px;
   background:
     radial-gradient(circle at 20% 20%, rgba(56,182,255,.18), transparent 60%),
     radial-gradient(circle at 80% 80%, rgba(36,80,255,.14), transparent 60%),
@@ -28,6 +28,7 @@
   font-weight: 600;
   color: #fff;
   letter-spacing: -0.03em;
+  margin: 0;
 }
 
 .title span {

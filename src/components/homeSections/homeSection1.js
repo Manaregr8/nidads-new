@@ -49,6 +49,31 @@ export default function Banner() {
             </Link>
           </div>
 
+          {/* SOCIAL PROOF */}
+          <div className={Style.socialProof}>
+            {/* Enrolled Students */}
+            <div className={Style.statBlock}>
+              <div className={Style.avatarGroup}>
+                <img src="/studentImages/student1.jpg" alt="Student 1" className={Style.avatar} width={40} height={40} />
+                <img src="/studentImages/student1 (2).jpg" alt="Student 2" className={Style.avatar} width={40} height={40} />
+                <img src="/studentImages/student1 (3).jpg" alt="Student 3" className={Style.avatar} width={40} height={40} />
+              </div>
+              <span className={Style.statText}>30,000+ enrolled</span>
+            </div>
+
+            {/* Google Reviews */}
+            <div className={Style.statBlock}>
+              <img src="/google (1).svg" alt="Google" className={Style.googleLogo} width={20} height={20} />
+              <div className={Style.starRating}>
+                {[1, 2, 3, 4, 5].map((star) => (
+                  <svg key={star} className={Style.star} width="14" height="14" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+                  </svg>
+                ))}
+              </div>
+              <span className={Style.statText}>4.9/5 (12,872 ratings)</span>
+            </div>
+          </div>
           
         </div>
       </div>

@@ -220,6 +220,67 @@ font-weight: 600;
 }
 
 /* ===============================
+   SOCIAL PROOF
+================================ */
+.socialProof {
+  display: flex;
+  gap: 2.5rem;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 2rem;
+  align-items: center;
+}
+
+.statBlock {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.avatarGroup {
+  display: flex;
+  gap: -8px;
+}
+
+.avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 2px solid #000;
+  object-fit: cover;
+  margin-left: -8px;
+}
+
+.avatar:first-child {
+  margin-left: 0;
+}
+
+.statText {
+  font-size: 0.95rem;
+  color: #b3e0ff;
+  font-weight: 500;
+}
+
+.googleLogo {
+  width: 20px;
+  height: 20px;
+  object-fit: contain;
+}
+
+.starRating {
+  display: flex;
+  gap: 2px;
+  align-items: center;
+}
+
+.star {
+  width: 14px;
+  height: 14px;
+  color: #ffc107;
+  filter: drop-shadow(0 1px 2px rgba(255, 193, 7, 0.3));
+}
+
+/* ===============================
    FONTS
 ================================ */
 @font-face {
@@ -294,6 +355,10 @@ font-weight: 600;
   .careerBtn {
     width: 100%;
     max-width: 520px;
+  }
+
+  .socialProof {
+    gap: 1.5rem;
   }
 
   .techItem {

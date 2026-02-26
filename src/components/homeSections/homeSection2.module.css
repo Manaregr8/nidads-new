@@ -377,6 +377,13 @@
   overflow: hidden;
 }
 
+/* ensure the static image fits its container */
+.leftImagePlaceholder .leftImage {
+  max-width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+
 .rightContent {
   display: flex;
   flex-direction: column;

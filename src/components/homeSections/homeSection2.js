@@ -1,13 +1,19 @@
 import React from "react";
 import Link from "next/link";
 import styles from "./homeSection2.module.css";
-import CubesBackground from "@/components/reactBits/CubesBackground";
+// background image instead of animated cubes
 
 export default function HomeSection2() {
   return (
     <section className={styles.container}>
       <div className={styles.leftImagePlaceholder}>
-        <CubesBackground />
+        <img
+          src="/Python (4).png"
+          alt="Python programming"
+          className={styles.leftImage}
+          width={480}
+          height={480}
+        />
       </div>
 
       <div className={styles.rightContent}>

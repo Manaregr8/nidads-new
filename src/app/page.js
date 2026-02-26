@@ -9,6 +9,7 @@ import TechStackMarquee from "@/components/homeSections/TechStackMarquee";
 
 import Videostest from "@/components/homeSections/videostest";
 import CourseCardsSection from "@/components/homeSections/CourseCardsSection";
+import CourseComparison from "@/components/homeSections/CourseComparison";
 
 
 export default function Home() {
@@ -16,10 +17,12 @@ export default function Home() {
   <>
   <HomeSection1/>
   <TechStackMarquee/>
+     <CourseCardsSection/>
   <HomeSection2/>
     <NewSection/>
-   <CourseCardsSection/>
+
     <CareerPrograms/>
+<CourseComparison/>
   <GallerySection/>
   <Videostest/>
 
