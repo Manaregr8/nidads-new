@@ -134,15 +134,17 @@
 }
 
 /* Responsive Styles */
-@media (max-width: 1150px) {
-  .topGrid {
-    grid-template-columns: 1fr 1fr;
+@media (max-width: 768px) {
+  .left, .middle, .right {
+    animation: none;
   }
+  
   .mainImg {
-    max-width: 340px;
+    transition: none;
   }
-  .right {
-    margin-top: 32px;
+  
+  .leftDesc {
+    transition: none;
   }
 }
 

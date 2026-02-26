@@ -268,23 +268,19 @@
    RESPONSIVE — TABLET & MOBILE
 ================================ */
 
-@media (max-width: 1024px) {
-  
+@media (max-width: 768px) {
   .container {
-    grid-template-columns: 1fr; /* 👈 single column */
+    grid-template-columns: 1fr;
     padding: 50px 40px;
     gap: 40px;
   }
 
-  /* Cubes on top */
   .leftImagePlaceholder {
-    order: 1;
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: auto;
-    min-height: 280px;
+    display: none !important;
+    visibility: hidden !important;
+    height: 0 !important;
+    min-height: 0 !important;
+    overflow: hidden !important;
   }
 
   .cubesWrapper {

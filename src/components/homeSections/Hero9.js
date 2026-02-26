@@ -79,8 +79,17 @@ const TestimonialCard = ({ text, image, name, role }) => (
 
 const TestimonialsColumn = ({ testimonials, duration, className, speed }) => {
   const columnRef = useRef(null);
+  const isMobile = useRef(false);
 
   useEffect(() => {
+    // Check if mobile on mount
+    isMobile.current = typeof window !== 'undefined' && window.innerWidth <= 768;
+  }, []);
+
+  useEffect(() => {
+    // Disable animations on mobile for performance
+    if (isMobile.current) return;
+
     const column = columnRef.current;
     if (!column) return;
 

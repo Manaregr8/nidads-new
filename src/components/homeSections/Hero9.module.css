@@ -212,7 +212,10 @@
 /* Responsive */
 @media (max-width: 1024px) {
   .hiddenTablet {
-    display: none;
+    display: none !important;
+    visibility: hidden !important;
+    height: 0 !important;
+    overflow: hidden !important;
   }
 
   .title {
@@ -225,88 +228,7 @@
 }
 
 @media (max-width: 768px) {
-  .hero {
-    padding: 60px 20px;
-  }
-
-  .hiddenMobile {
+  .hero{
     display: none;
-  }
-
-  .header {
-    margin-bottom: 40px;
-  }
-
-  .title {
-    font-size: 32px;
-  }
-
-  .description {
-    font-size: 15px;
-  }
-
-  .testimonialsWrapper {
-    max-height: 600px;
-    margin-bottom: 40px;
-  }
-
-  .column {
-    max-width: 100%;
-  }
-
-  .card {
-    padding: 28px;
-    max-width: 100%;
-  }
-
-  .text {
-    font-size: 14px;
-  }
-
-  .ctaButton {
-    font-size: 16px;
-    padding: 16px 36px;
-  }
-}
-
-@media (max-width: 480px) {
-  .hero {
-    padding: 40px 16px;
-  }
-
-  .title {
-    font-size: 28px;
-  }
-
-  .description {
-    font-size: 14px;
-  }
-
-  .card {
-    padding: 24px;
-    border-radius: 20px;
-  }
-
-  .text {
-    font-size: 13px;
-    margin-bottom: 16px;
-  }
-
-  .avatar {
-    width: 36px;
-    height: 36px;
-  }
-
-  .name {
-    font-size: 13px;
-  }
-
-  .role {
-    font-size: 12px;
-  }
-
-  .ctaButton {
-    font-size: 15px;
-    padding: 14px 30px;
   }
 }

@@ -188,6 +188,30 @@
   }
 
   .card {
+    transition: none;
+  }
+  
+  .card:hover {
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  }
+  
+  .card img {
+    transition: none;
+  }
+  
+  .card:hover img {
+    transform: none;
+  }
+  
+  .label {
+    transition: none;
+  }
+  
+  .card:hover .label {
+    transform: none;
+  }
+
+  .card {
     height: 160px;
   }
 }

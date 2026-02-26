@@ -134,10 +134,14 @@
 .philosophyText { font-size: 0.99rem; color: #e6f2ff; line-height: 1.55; }
 
 /* Responsive Styles */
-@media (max-width: 1150px) {
-  .topGrid { grid-template-columns: 1fr 1fr; }
-  .right { margin-top: 32px; }
-  .mainImg { max-width: 340px; }
+@media (max-width: 768px) {
+  .left, .middle, .right {
+    animation: none;
+  }
+  
+  .mainImg, .philosophyImg {
+    transition: none;
+  }
 }
 @media (max-width: 900px) {
   .topGrid {
