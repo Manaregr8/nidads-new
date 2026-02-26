@@ -25,10 +25,10 @@ export default function AboutSection1() {
           </div>
         </div>
         <div className={styles.middle}>
-          <img src={mainImg} alt="NIDAD Learning Environment" className={styles.mainImg} />
+          <img src={mainImg} alt="NIDAD Learning Environment" className={styles.mainImg} width={840} height={577} />
         </div>
         <div className={styles.right}>
-          <img src={philosophyImg} alt="Our Philosophy" className={styles.philosophyImg} />
+          <img src={philosophyImg} alt="Our Philosophy" className={styles.philosophyImg} width={420} height={288} />
           <div className={styles.philosophyTextBlock}>
             <div className={styles.philosophyTitle}>Our Mission</div>
             <div className={styles.philosophyText}>

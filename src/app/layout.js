@@ -40,7 +40,13 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <head>
-        <Script src="https://cdn.tailwindcss.com" strategy="beforeInteractive" />
+        {/* performance hints to reduce render-blocking */}
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="true" />
+        <link rel="preconnect" href="https://nidads.com" />
+        <link rel="preload" href="/styles/globals.css" as="style" />
+        <link rel="stylesheet" href="/styles/globals.css" />
+        {/* tailwind is compiled via PostCSS; no CDN script needed */}
       </head>
       <body className={`${geistSans.variable} ${geistMono.variable} app-shell`}>
         <Navbar/>

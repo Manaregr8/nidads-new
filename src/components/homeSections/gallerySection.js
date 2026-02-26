@@ -58,7 +58,7 @@ export default function GallerySection() {
           <div className={styles.grid}>
             {CARDS.map((card) => (
               <div key={card.id} className={styles.card}>
-                <img src={card.img} alt={card.label} />
+                <img src={card.img} alt={card.label} width={300} height={180} />
                 <span className={styles.label}>{card.label}</span>
               </div>
             ))}

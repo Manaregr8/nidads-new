@@ -14,6 +14,8 @@ export default function Footer() {
             <img
               src="/Nidads-2.webp"
               alt="NIDADS"
+              width={120}
+              height={40}
               className={styles.logo}
             />
             <p className={styles.tagline}>

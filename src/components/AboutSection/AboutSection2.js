@@ -23,7 +23,7 @@ export default function AboutSection2() {
 
         {/* CENTER: Main Image */}
         <div className={styles.middle}>
-          <img src={mainImg} alt="NIDAD Learning Journey" className={styles.mainImg} />
+          <img src={mainImg} alt="NIDAD Learning Journey" className={styles.mainImg} width={320} height={320} />
         </div>
 
         {/* RIGHT SIDE: Section Heading */}

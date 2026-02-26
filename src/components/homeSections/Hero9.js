@@ -68,7 +68,7 @@ const TestimonialCard = ({ text, image, name, role }) => (
   <div className={styles.card}>
     <p className={styles.text}>{text}</p>
     <div className={styles.author}>
-      <img src={image} alt={name} className={styles.avatar} />
+      <img src={image} alt={name} className={styles.avatar} width={44} height={44} />
       <div className={styles.info}>
         <div className={styles.name}>{name}</div>
         <div className={styles.role}>{role}</div>

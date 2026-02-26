@@ -12,6 +12,12 @@
     "db:studio": "prisma studio",
     "seed": "node prisma/seed.js"
   },
+  "browserslist": [
+    "last 2 Chrome versions",
+    "last 2 Firefox versions",
+    "last 2 Safari versions",
+    "not dead"
+  ],
   "dependencies": {
     "@prisma/client": "^6.19.0",
     "@react-three/fiber": "^9.5.0",

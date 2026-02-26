@@ -52,6 +52,8 @@ const Hero7 = () => {
                   className={styles.video}
                   src={card.image}
                   alt={card.label}
+                  width={320}
+                  height={240}
                 />
                 <div className={styles.overlay}></div>
                 <div className={styles.content}>

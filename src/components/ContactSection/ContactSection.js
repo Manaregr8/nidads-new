@@ -13,8 +13,8 @@ export default function ContactSection() {
         <div className={styles.header}>
           <h1 className={styles.title}>Get in touch</h1>
           <p className={styles.subtitle}>
-            Have questions about our courses, admissions, or career support? {"We're"} here to help.
-            Reach out to our student counsellors and we'll guide you through the next steps.
+            Have questions about our courses, admissions, or career support? We&apos;re here to help.
+            Reach out to our student counsellors and we&apos;ll guide you through the next steps.
           </p>
         </div>
 
