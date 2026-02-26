@@ -95,7 +95,7 @@ export default function CoursesSection() {
                     </div>
 
                     <Link
-                      href={`/course/${course.id}`}
+                      href={`/course/${course.slug}`}
                       className={styles.cta}
                     >
                       View Course

@@ -4,12 +4,12 @@ import React, { useState, use } from "react";
 import dynamic from "next/dynamic";
 const PopupEnquiryForm = dynamic(() => import("@/components/PopupEnquiryForm.jsx"), { ssr: false });
 import Link from "next/link";
-import { getCourseById, courses } from "@/data/courses";
+import { getCourseBySlug, courses } from "@/data/courses";
 import styles from "./courseDetail.module.css";
 
 export default function CourseDetailPage({ params }) {
-  const { id } = use(params);
-  const course = getCourseById(id);
+  const { slug } = use(params);
+  const course = getCourseBySlug(slug);
   const [expandedModule, setExpandedModule] = useState(null);
   const [showEnquiry, setShowEnquiry] = useState(false);
 

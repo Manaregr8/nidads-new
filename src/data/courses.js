@@ -3,6 +3,7 @@ export const courses = [
     id: 1,
     title: "Diploma in Data Science & AI",
     level: "diploma",
+    slug: "diploma-in-data-science-and-ai",
     category: "data-science",
     duration: "12 Months",
     mode: "Hybrid Learning",
@@ -120,6 +121,7 @@ export const courses = [
     id: 2,
     title: "Diploma in Data Analytics & AI",
     level: "diploma",
+    slug: "diploma-in-data-analytics-and-ai",
     category: "data-analytics",
     duration: "12 Months",
     mode: "Hybrid Learning",
@@ -229,6 +231,7 @@ export const courses = [
     id: 3,
     title: "Advanced Certification in Data Science & AI",
     level: "advanced",
+    slug: "advanced-certification-in-data-science-and-ai",
     category: "data-science",
     duration: "6 Months",
     mode: "Hybrid Learning",
@@ -331,6 +334,7 @@ export const courses = [
     id: 4,
     title: "Advanced Certification in Data Analytics & AI",
     level: "advanced",
+    slug: "advanced-certification-in-data-analytics-and-ai",
     category: "data-analytics",
     duration: "6 Months",
     mode: "Hybrid Learning",
@@ -433,6 +437,7 @@ export const courses = [
     id: 5,
     title: "Certification in Data Analytics & AI",
     level: "certificate",
+    slug: "certification-in-data-analytics-and-ai",
     category: "data-analytics",
     duration: "3 Months",
     mode: "Hybrid Learning",
@@ -526,6 +531,7 @@ export const courses = [
     id: 6,
     title: "Applied Data Analytics with Python & SQL",
     level: "certificate",
+    slug: "applied-data-analytics-with-python-and-sql",
     category: "data-analytics",
     duration: "3 Months",
     mode: "Hybrid Learning",
@@ -619,6 +625,7 @@ export const courses = [
     id: 7,
     title: "Business Intelligence with Power BI",
     level: "certificate",
+    slug: "business-intelligence-with-power-bi",
     category: "data-analytics",
     duration: "3 Months",
     mode: "Hybrid Learning",
@@ -712,6 +719,7 @@ export const courses = [
     id: 8,
     title: "Data Science for Product Managers",
     level: "certificate",
+    slug: "data-science-for-product-managers",
     category: "data-science",
     duration: "3 Months",
     mode: "Hybrid Learning",
@@ -805,6 +813,7 @@ export const courses = [
     id: 9,
     title: "Advanced Data Visualization",
     level: "advanced",
+    slug: "advanced-data-visualization",
     category: "data-analytics",
     duration: "3 Months",
     mode: "Hybrid Learning",
@@ -898,4 +907,8 @@ export const courses = [
 
 export function getCourseById(id) {
   return courses.find(course => course.id === parseInt(id));
+}
+
+export function getCourseBySlug(slug) {
+  return courses.find(course => course.slug === slug);
 }
