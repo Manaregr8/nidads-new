@@ -84,6 +84,7 @@
 .mainImg {
   width: 100%;
   max-width: 420px;
+  aspect-ratio: 16/11;
   border-radius: 2rem;
   object-fit: cover;
   display: block;
@@ -102,6 +103,7 @@
 .philosophyImg {
   width: 100%;
   max-width: 210px;
+  aspect-ratio: 16/11;
   border-radius: 1.3rem;
   object-fit: cover;
   box-shadow: 0 6px 30px rgba(56, 182, 255, 0.2);

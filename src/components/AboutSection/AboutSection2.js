@@ -1,6 +1,6 @@
 import styles from './aboutSection2.module.css';
 
-const mainImg = "/uploads/Shagun4-removebg-preview (1).png";
+const mainImg = "/whyChooseUs/learning module.webp";
 
 export default function AboutSection2() {
   return (

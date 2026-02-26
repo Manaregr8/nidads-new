@@ -78,9 +78,7 @@ export default function Footer() {
           <span>© {new Date().getFullYear()} NIDADS. All rights reserved.</span>
 
           <div className={styles.socials}>
-            <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">LinkedIn</a>
-            <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" aria-label="Instagram">Instagram</a>
-            <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" aria-label="YouTube">YouTube</a>
+            <a href="https://www.instagram.com/nidads_official/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">Instagram</a>
           </div>
         </div>
 

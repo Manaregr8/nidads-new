@@ -16,11 +16,14 @@ export default function Banner() {
       {/* SILK BACKGROUND */}
       <div className={Style.ditherBg}>
         <Silk
-          speed={1.8}
-          scale={0.9}
-          color="#38b6ff"
-          noiseIntensity={1.7}
-          rotation={0}
+          speed={0.5}
+squareSize={40}
+direction='diagonal' // up, down, left, right, diagonal
+borderColor='#fff'
+hoverFillColor='#222'
+  direction="diagonal"
+  borderColor="#271E37"
+  hoverColor="#222222"
         />
       </div>
 

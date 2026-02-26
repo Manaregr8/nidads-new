@@ -56,7 +56,7 @@ export default function NewSection() {
           <div className={styles.testimonials}>
             <div className={styles.card}>
               <div className={styles.profile}>
-                <div className={styles.avatar} />
+                <img src="/studentImages/student1.jpg" alt="Aman Verma" className={styles.avatar} />
                 <div>
                   <h4>Aman Verma</h4>
                   <span>Data Engineer · Bangalore</span>
@@ -72,7 +72,7 @@ export default function NewSection() {
 
             <div className={styles.card}>
               <div className={styles.profile}>
-                <div className={styles.avatar} />
+                <img src="/studentImages/student1 (2).jpg" alt="Priya Nair" className={styles.avatar} />
                 <div>
                   <h4>Priya Nair</h4>
                   <span>Data Analyst · Pune</span>
@@ -87,7 +87,7 @@ export default function NewSection() {
 
             <div className={styles.card}>
               <div className={styles.profile}>
-                <div className={styles.avatar} />
+                <img src="/studentImages/student1 (3).jpg" alt="Rahul Mehta" className={styles.avatar} />
                 <div>
                   <h4>Rahul Mehta</h4>
                   <span>ML Engineer · Gurgaon</span>
