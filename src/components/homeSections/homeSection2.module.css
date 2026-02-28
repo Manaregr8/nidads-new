@@ -432,7 +432,8 @@
 .subheading {
   font-size: 1.1rem;
   margin-bottom: 1.2rem;
-  color: #f5f5f5;
+  font-weight: 400;
+  color: #adc3d1;
   line-height: 1.65;
   text-shadow: 0 1px 8px rgba(0, 0, 0, 0.5);
 }

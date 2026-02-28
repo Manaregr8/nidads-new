@@ -73,9 +73,9 @@ export default function Navbar() {
                     }
                 }}
                 className={Style.desktopOnly}
-                style={{ color: '#fff', marginLeft: '1rem', background: 'none', border: 'none', cursor: 'pointer', font: 'inherit' }}
+                style={{ backgroundColor:'#fff',padding:'8px 15px ',borderRadius:'5px',fontWeight:'bold', color: '#000', marginLeft: '1rem', border: 'none', cursor: 'pointer', font: 'inherit' }}
             >
-                Councelling
+                Join Free Demo
             </button>
         </nav>
     );

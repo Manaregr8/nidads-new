@@ -1,10 +1,84 @@
-"use client"
-import styles from '@/components/ContactSection/contactSection.module.css';
+"use client";
+
+import { useState } from "react";
+import styles from "@/components/ContactSection/contactSection.module.css";
+
+const SCRIPT_URL =
+  "https://script.google.com/macros/s/AKfycbzJb_a1dim388vjBUcPsuk5cbUq50oFxXimA5XOiEzm9o8cvUMt-cuWgGRabkEfbtAi8A/exec";
 
 export default function ContactSection() {
-  const handleSubmit = (e) => {
+  const [form, setForm] = useState({
+    firstName: "",
+    lastName: "",
+    email: "",
+    phone: "",
+    message: "",
+    enquiryTypes: []
+  });
+
+  const [loading, setLoading] = useState(false);
+  const [submitted, setSubmitted] = useState(false);
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setForm({ ...form, [name]: value });
+  };
+
+  const handleCheckboxChange = (value) => {
+    let updated = [...form.enquiryTypes];
+
+    if (updated.includes(value)) {
+      updated = updated.filter((item) => item !== value);
+    } else {
+      updated.push(value);
+    }
+
+    setForm({ ...form, enquiryTypes: updated });
+  };
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Handle form submission
+
+    if (!form.firstName || !form.email) {
+      alert("Please fill required fields.");
+      return;
+    }
+
+    setLoading(true);
+
+    try {
+      await fetch(SCRIPT_URL, {
+        method: "POST",
+        mode: "no-cors",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          name: form.firstName + " " + form.lastName,
+          email: form.email,
+          mobile: form.phone,
+          course: "Contact Form",
+          message: form.message,
+          enquiryTypes: form.enquiryTypes.join(", "),
+          source: "Contact Section"
+        })
+      });
+
+      setSubmitted(true);
+      setForm({
+        firstName: "",
+        lastName: "",
+        email: "",
+        phone: "",
+        message: "",
+        enquiryTypes: []
+      });
+    } catch (err) {
+      console.error("Submission failed:", err);
+      alert("Something went wrong.");
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -19,54 +93,107 @@ export default function ContactSection() {
         </div>
 
         <div className={styles.content}>
-          <form className={styles.form} onSubmit={handleSubmit}>
+           <form className={styles.form} onSubmit={handleSubmit}>
+            {submitted && (
+              <p style={{ color: "green", marginBottom: "10px" }}>
+                Message sent successfully!
+              </p>
+            )}
+
             <div className={styles.nameRow}>
               <div className={styles.inputGroup}>
                 <label className={styles.label}>First name</label>
-                <input type="text" placeholder="First name" className={styles.input} />
+                <input
+                  type="text"
+                  name="firstName"
+                  value={form.firstName}
+                  onChange={handleChange}
+                  placeholder="First name"
+                  className={styles.input}
+                  required
+                />
               </div>
+
               <div className={styles.inputGroup}>
                 <label className={styles.label}>Last name</label>
-                <input type="text" placeholder="Last name" className={styles.input} />
+                <input
+                  type="text"
+                  name="lastName"
+                  value={form.lastName}
+                  onChange={handleChange}
+                  placeholder="Last name"
+                  className={styles.input}
+                />
               </div>
             </div>
 
             <div className={styles.inputGroup}>
               <label className={styles.label}>Email</label>
-              <input type="email" placeholder="you@company.com" className={styles.input} />
+              <input
+                type="email"
+                name="email"
+                value={form.email}
+                onChange={handleChange}
+                placeholder="you@company.com"
+                className={styles.input}
+                required
+              />
             </div>
 
             <div className={styles.inputGroup}>
               <label className={styles.label}>Phone number</label>
-              <div className={styles.phoneInput}>
-                <select className={styles.countrySelect}>
-                  <option value="US">US</option>
-                  <option value="UK">UK</option>
-                  <option value="AU">AU</option>
-                  <option value="IN">IN</option>
-                </select>
-                <input type="tel" placeholder="+1 (555) 000-0000" className={styles.phoneField} />
-              </div>
+              <input
+                type="tel"
+                name="phone"
+                value={form.phone}
+                onChange={handleChange}
+                placeholder="+91 9876543210"
+                className={styles.input}
+              />
             </div>
 
             <div className={styles.inputGroup}>
               <label className={styles.label}>Message</label>
-              <textarea placeholder="Leave us a message..." className={styles.textarea} rows={4} />
+              <textarea
+                name="message"
+                value={form.message}
+                onChange={handleChange}
+                placeholder="Leave us a message..."
+                className={styles.textarea}
+                rows={4}
+              />
             </div>
 
             <div className={styles.inputGroup}>
               <label className={styles.label}>Enquiry type</label>
               <div className={styles.checkboxGrid}>
-                {['Course info', 'Admissions', 'Scholarship', 'Placement help', 'Other'].map((item) => (
+                {[
+                  "Course info",
+                  "Admissions",
+                  "Scholarship",
+                  "Placement help",
+                  "Other"
+                ].map((item) => (
                   <label key={item} className={styles.checkboxLabel}>
-                    <input type="checkbox" className={styles.checkbox} />
+                    <input
+                      type="checkbox"
+                      checked={form.enquiryTypes.includes(item)}
+                      onChange={() => handleCheckboxChange(item)}
+                      className={styles.checkbox}
+                    />
                     <span>{item}</span>
                   </label>
                 ))}
               </div>
             </div>
 
-            <button type="submit" className={styles.submitBtn}>Send message</button>
+            <button
+              type="submit"
+              className={styles.submitBtn}
+              disabled={loading}
+            >
+              {loading ? "Sending..." : "Send message"}
+            </button>
           </form>
 
           <div className={styles.contactInfo}>

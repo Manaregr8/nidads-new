@@ -314,14 +314,16 @@ font-weight: 600;
 /* ===============================
    RESPONSIVE
 ================================ */
-@media (max-width: 900px) {
+@media (max-width: 1126px) {
   .contentWrapper {
     flex-direction: column;
     justify-content: center;
     text-align: center;
     gap: 2rem;
   }
-
+  .BannerContainer {
+    aspect-ratio: 4 / 2.5;
+  }
   .rightContent {
     align-items: center;
   }
@@ -368,7 +370,13 @@ font-weight: 600;
 
 @media (max-width: 470px) {
   .BannerContainer {
-    aspect-ratio: 3 / 4;
+    aspect-ratio: 3 / 6;
+    min-height: clamp(560px, 170vw, 860px);
+  }
+}
+@media (max-width: 360px) {
+  .BannerContainer {
+    aspect-ratio: 3 / 7;
     min-height: clamp(560px, 170vw, 860px);
   }
 }

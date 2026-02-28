@@ -1,7 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styles from "./SimpleNamePopup.module.css";
 import { courses } from "@/data/courses";
-import { useEffect } from "react";
+
+const SCRIPT_URL =
+  "https://script.google.com/macros/s/AKfycbzJb_a1dim388vjBUcPsuk5cbUq50oFxXimA5XOiEzm9o8cvUMt-cuWgGRabkEfbtAi8A/exec";
 
 const SimpleNamePopup = ({ open, onClose, selectedCourseId, lockCourse }) => {
   const [form, setForm] = useState({
@@ -10,82 +12,117 @@ const SimpleNamePopup = ({ open, onClose, selectedCourseId, lockCourse }) => {
     mobile: "",
     course: selectedCourseId || ""
   });
+
   const [errors, setErrors] = useState({});
   const [submitted, setSubmitted] = useState(false);
-useEffect(() => {
-  if (open) {
-    document.body.style.overflow = "hidden";
-  } else {
-    document.body.style.overflow = "";
-  }
+  const [loading, setLoading] = useState(false);
 
-  return () => {
-    document.body.style.overflow = "";
-  };
-}, [open]);
+  useEffect(() => {
+    if (open) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [open]);
 
   if (!open) return null;
 
-  const courseOptions = courses.map((c) => ({ value: c.id, label: c.title }));
-  const selectedCourseLabel = courseOptions.find(opt => opt.value === form.course)?.label;
+  const courseOptions = courses.map((c) => ({
+    value: c.id,
+    label: c.title
+  }));
+
+  const selectedCourseLabel = courseOptions.find(
+    (opt) => opt.value === form.course
+  )?.label;
 
   const validate = () => {
     const errs = {};
-    
+
     if (!form.name.trim()) {
       errs.name = "Name is required";
     } else if (form.name.trim().length < 2) {
       errs.name = "Name must be at least 2 characters";
     }
-    
+
     if (!form.email.trim()) {
       errs.email = "Email is required";
     } else if (!form.email.match(/^\S+@\S+\.\S+$/)) {
       errs.email = "Please enter a valid email";
     }
-    
+
     if (!form.mobile.trim()) {
       errs.mobile = "Mobile number is required";
     } else if (!form.mobile.match(/^\d{10}$/)) {
       errs.mobile = "Enter a valid 10 digit mobile number";
     }
-    
+
     if (!form.course) {
       errs.course = "Please select a course";
     }
-    
+
     return errs;
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    
+
     const errs = validate();
     if (Object.keys(errs).length > 0) {
       setErrors(errs);
       return;
     }
-    
-    // Success - handle submission here
-    console.log("Submitted form:", form);
-    setSubmitted(true);
-    
-    // Auto close after 3 seconds
-    setTimeout(() => {
-      handleClose();
-    }, 3000);
+
+    setLoading(true);
+
+    try {
+      await fetch(SCRIPT_URL, {
+        method: "POST",
+        mode: "no-cors", // Required for Apps Script
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          ...form,
+          course: selectedCourseLabel || form.course
+        })
+      });
+
+      setSubmitted(true);
+
+      setTimeout(() => {
+        handleClose();
+      }, 3000);
+    } catch (error) {
+      console.error("Submission failed:", error);
+      alert("Something went wrong. Please try again.");
+    } finally {
+      setLoading(false);
+    }
   };
 
   const handleClose = () => {
-    setForm({ name: "", email: "", mobile: "", course: "" });
+    setForm({
+      name: "",
+      email: "",
+      mobile: "",
+      course: ""
+    });
     setErrors({});
     setSubmitted(false);
+    setLoading(false);
     onClose();
   };
 
   const handleChange = (e) => {
     const { name, value } = e.target;
+
     setForm({ ...form, [name]: value });
+
     if (errors[name]) {
       setErrors({ ...errors, [name]: "" });
     }
@@ -100,8 +137,8 @@ useEffect(() => {
   return (
     <div className={styles.overlay} onClick={handleOverlayClick}>
       <div className={styles.popup}>
-        <button 
-          className={styles.closeBtn} 
+        <button
+          className={styles.closeBtn}
           onClick={handleClose}
           type="button"
           aria-label="Close"
@@ -112,21 +149,27 @@ useEffect(() => {
         {submitted ? (
           <div className={styles.success}>
             <div className={styles.successIcon}>✓</div>
-            <div className={styles.successText}>Thank you, {form.name}!</div>
-            <div className={styles.successSubtext}>We&apos;ll contact you soon at {form.email}</div>
+            <div className={styles.successText}>
+              Thank you, {form.name}!
+            </div>
+            <div className={styles.successSubtext}>
+              We&apos;ll contact you soon at {form.email}
+            </div>
           </div>
         ) : (
           <form className={styles.form} onSubmit={handleSubmit}>
             <h2 className={styles.title}>Enquire Now</h2>
-            
+
             <div className={styles.formGrid}>
-              {/* Name Field */}
+              {/* Name */}
               <div className={styles.fieldWrapper}>
                 <label className={styles.label}>Name</label>
                 <input
                   type="text"
                   name="name"
-                  className={`${styles.input} ${errors.name ? styles.inputError : ""}`}
+                  className={`${styles.input} ${
+                    errors.name ? styles.inputError : ""
+                  }`}
                   placeholder="Enter your name"
                   value={form.name}
                   onChange={handleChange}
@@ -134,32 +177,32 @@ useEffect(() => {
                 />
                 {errors.name && (
                   <div className={styles.errorMsg}>
-                    <span className={styles.errorIcon}>⚠</span>
-                    {errors.name}
+                    ⚠ {errors.name}
                   </div>
                 )}
               </div>
 
-              {/* Email Field */}
+              {/* Email */}
               <div className={styles.fieldWrapper}>
                 <label className={styles.label}>Email</label>
                 <input
                   type="email"
                   name="email"
-                  className={`${styles.input} ${errors.email ? styles.inputError : ""}`}
+                  className={`${styles.input} ${
+                    errors.email ? styles.inputError : ""
+                  }`}
                   placeholder="your.email@gmail.com"
                   value={form.email}
                   onChange={handleChange}
                 />
                 {errors.email && (
                   <div className={styles.errorMsg}>
-                    <span className={styles.errorIcon}>⚠</span>
-                    {errors.email}
+                    ⚠ {errors.email}
                   </div>
                 )}
               </div>
 
-              {/* Mobile Field */}
+              {/* Mobile */}
               <div className={styles.fieldWrapper}>
                 <label className={styles.label}>Mobile Number</label>
                 <div className={styles.mobileWrapper}>
@@ -167,7 +210,9 @@ useEffect(() => {
                   <input
                     type="tel"
                     name="mobile"
-                    className={`${styles.input} ${styles.mobileInput} ${errors.mobile ? styles.inputError : ""}`}
+                    className={`${styles.input} ${styles.mobileInput} ${
+                      errors.mobile ? styles.inputError : ""
+                    }`}
                     placeholder="10 digit number"
                     value={form.mobile}
                     onChange={handleChange}
@@ -177,15 +222,15 @@ useEffect(() => {
                 </div>
                 {errors.mobile && (
                   <div className={styles.errorMsg}>
-                    <span className={styles.errorIcon}>⚠</span>
-                    {errors.mobile}
+                    ⚠ {errors.mobile}
                   </div>
                 )}
               </div>
 
-              {/* Course Selection */}
+              {/* Course */}
               <div className={styles.fieldWrapper}>
                 <label className={styles.label}>Select Course</label>
+
                 {lockCourse ? (
                   <input
                     type="text"
@@ -196,7 +241,9 @@ useEffect(() => {
                 ) : (
                   <select
                     name="course"
-                    className={`${styles.select} ${errors.course ? styles.inputError : ""}`}
+                    className={`${styles.select} ${
+                      errors.course ? styles.inputError : ""
+                    }`}
                     value={form.course}
                     onChange={handleChange}
                   >
@@ -208,17 +255,21 @@ useEffect(() => {
                     ))}
                   </select>
                 )}
+
                 {errors.course && (
                   <div className={styles.errorMsg}>
-                    <span className={styles.errorIcon}>⚠</span>
-                    {errors.course}
+                    ⚠ {errors.course}
                   </div>
                 )}
               </div>
             </div>
 
-            <button type="submit" className={styles.submitBtn}>
-              Submit Enquiry
+            <button
+              type="submit"
+              className={styles.submitBtn}
+              disabled={loading}
+            >
+              {loading ? "Submitting..." : "Submit Enquiry"}
             </button>
           </form>
         )}
