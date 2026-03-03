@@ -2,7 +2,7 @@ import styles from "./aboutSection1.module.css";
 
 // Add your actual image URLs here (paths point to /public/whyChooseUs files)
 const philosophyImg = "/whyChooseUs/growth partners.webp";
-const mainImg = "/whyChooseUs/happy-students.webp";
+const mainImg = "/studentImages/student1 (2).jpg";
 // principal images not currently used; remove or replace if needed
 // const principal1Img = "/center/IMG_4066.webp";
 // const principal2Img = "/center/IMG_4067.webp";
@@ -25,7 +25,7 @@ export default function AboutSection1() {
           </div>
         </div>
         <div className={styles.middle}>
-          <img src={mainImg} alt="NIDAD Learning Environment" className={styles.mainImg} width={840} height={577} />
+        
         </div>
         <div className={styles.right}>
           <img src={philosophyImg} alt="Our Philosophy" className={styles.philosophyImg} width={420} height={288} />

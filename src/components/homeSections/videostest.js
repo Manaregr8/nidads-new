@@ -4,7 +4,7 @@ const Hero7 = () => {
   const cards = [
     {
       id: 1,
-      image: '/whyChooseUs/happy-students.webp',
+      image: '/studentImages/student1 (2).jpg',
       number: '25000+',
       label: 'Happy Students'
     },

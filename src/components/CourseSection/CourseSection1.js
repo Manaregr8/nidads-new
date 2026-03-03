@@ -47,18 +47,11 @@ export default function CourseSection1() {
 
         {/* RIGHT VISUAL */}
         <div className={styles.right}>
-          <div className={styles.card}>
             <img
-              src="Shagun4-removebg-preview (1).png"
+              src="/teem photos.png"
               alt="Instructor"
+              style={{objectFit:"contain", width:"100%", height:"100%"}}
             />
-
-            <div className={styles.cardInfo}>
-              <h4>Ms. Shagun</h4>
-              <p>Lead Instructor · Data Science</p>
-              <span>15+ Years Industry Experience</span>
-            </div>
-          </div>
         </div>
 
       </div>
