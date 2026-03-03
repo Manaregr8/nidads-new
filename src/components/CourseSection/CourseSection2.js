@@ -12,6 +12,12 @@ export default function CourseSection2() {
   const [activeTab, setActiveTab] = useState("popular");
   const [showAll, setShowAll] = useState(false);
 
+  const durationOptions = useMemo(() => {
+    return [...new Set(courses.map((course) => course.duration))].sort(
+      (a, b) => parseInt(a, 10) - parseInt(b, 10)
+    );
+  }, []);
+
   const toggle = (value, setter) => {
     setter(prev =>
       prev.includes(value) ? prev.filter(v => v !== value) : [...prev, value]
@@ -43,7 +49,7 @@ export default function CourseSection2() {
   }, [search, levels, durations, activeTab]);
 
   return (
-    <section className={styles.section}>
+    <section id="course-programs" className={styles.section}>
 
       {/* ===== SECTION HEADER ===== */}
       <div className={styles.sectionHeader}>
@@ -95,7 +101,7 @@ export default function CourseSection2() {
   <div className={styles.filterBlock}>
     <h4 className={styles.filterTitle}>Duration</h4>
 
-    {["3 months", "3-4 months", "6 months", "12 months"].map(d => (
+    {durationOptions.map(d => (
       <label key={d} className={styles.toggleRow}>
         <span className={styles.toggleLabelText}>{d}</span>
         <input
@@ -106,16 +112,6 @@ export default function CourseSection2() {
         <span className={styles.toggleSwitch}></span>
       </label>
     ))}
-  </div>
-
-  <div className={styles.filterBlock}>
-    <h4 className={styles.filterTitle}>Price</h4>
-    <select className={styles.priceSelect}>
-      <option>All prices</option>
-      <option>Under ₹50,000</option>
-      <option>₹50,000 – ₹1,00,000</option>
-      <option>Above ₹1,00,000</option>
-    </select>
   </div>
 
   <label className={`${styles.toggleRow} ${styles.sortToggle}`}>
@@ -152,7 +148,7 @@ export default function CourseSection2() {
             {(showAll ? filteredCourses : filteredCourses.slice(0, 4)).map(course => (
               <Link
                 key={course.id}
-                href={`/course/${course.id}`}
+                href={`/course/${course.slug}`}
                 className={styles.courseCard}
               >
                 {/* Image */}
@@ -183,8 +179,7 @@ export default function CourseSection2() {
                   </div>
 
                   <div className={styles.priceRow}>
-                    <span className={styles.oldPrice}>₹120,000</span>
-                    <span className={styles.newPrice}>₹{course.monthlyPrice}/month</span>
+                    <span className={styles.newPrice}>Enroll Now</span>
                   </div>
                 </div>
               </Link>

@@ -87,18 +87,11 @@ export default function CoursesSection() {
 
                   {/* BOTTOM FIXED */}
                   <div className={styles.priceRow}>
-                    <div>
-                      <span className={styles.price}>{course.price}</span>
-                      <span className={styles.monthly}>
-                        {course.monthlyPrice}/mo
-                      </span>
-                    </div>
-
                     <Link
                       href={`/course/${course.slug}`}
                       className={styles.cta}
                     >
-                      View Course
+                      Enroll Now
                     </Link>
                   </div>
                 </div>

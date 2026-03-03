@@ -285,18 +285,7 @@ export default function CourseDetailPage({ params }) {
                   </span>
                 </div>
               </div>
-
-
-              <div className={styles.priceSection}>
-                <div className={styles.installmentInfoBox}>
-                  <strong>Easy Installment Option:</strong>
-                  <div style={{marginTop: 6, color: '#b6c2d6', fontSize: 14}}>
-                    Pay your course fee in easy monthly installments. Flexible plans available for all students. Contact us for more details!
-                  </div>
-                </div>
-              </div>
-
-              <button className={styles.enrollButton} onClick={() => setShowEnquiry(true)}>Enroll now</button>
+              <button className={styles.enrollButton} onClick={() => setShowEnquiry(true)}>Enroll Now</button>
               {showEnquiry && (
                 <PopupEnquiryForm 
                   open={showEnquiry} 
@@ -456,7 +445,7 @@ export default function CourseDetailPage({ params }) {
             {recommended.map((c) => (
               <Link
                 key={c.id}
-                href={`/course/${c.id}`}
+                href={`/course/${c.slug}`}
                 className={styles.recoCard}
                 style={{ textDecoration: "none", color: "inherit" }}
               >

@@ -30,10 +30,10 @@ export default function Footer() {
           <div className={styles.links}>
             <div>
               <h4>Programs</h4>
-              <Link href="/course">Data Science</Link>
-              <Link href="/course">AI & Machine Learning</Link>
-              <Link href="/course">Full Stack Development</Link>
-              <Link href="/course">UI/UX Design</Link>
+              <Link href="/course/diploma-in-data-science-and-ai">Diploma in Data Science & AI</Link>
+              <Link href="/course/diploma-in-data-analytics-and-ai">Diploma in Data Analytics & AI</Link>
+              <Link href="/course/advanced-certification-in-data-science-and-ai">Advanced Certification in Data Science & AI</Link>
+              <Link href="/course/business-intelligence-with-power-bi">Business Intelligence with Power BI</Link>
             </div>
 
             <div>
@@ -67,7 +67,10 @@ export default function Footer() {
               >
                 Enquire Now
               </button>
-              <Link href="/about">About</Link>
+              <Link href="/privacy-policy">Privacy Policy</Link>
+              <Link href="/disclaimer">Disclaimer</Link>
+              <Link href="/sitemap.xml">Sitemap XML</Link>
+              <Link href="/sitemap.html">Sitemap HTML</Link>
             </div>
           </div>
         </div>
@@ -81,6 +84,8 @@ export default function Footer() {
 
           <div className={styles.socials}>
             <a href="https://www.instagram.com/nidads_official/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">Instagram</a>
+            <a href="https://www.linkedin.com/in/national-institute-of-data-analytics-and-data-science-28b709381/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">LinkedIn</a>
+          
           </div>
         </div>
 

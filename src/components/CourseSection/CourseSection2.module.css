@@ -303,6 +303,18 @@
   font-size: 12px;
 }
 
+.oldPrice {
+  text-decoration: line-through;
+  font-size: 13px;
+  color: #64748b;
+}
+
+.newPrice {
+  font-size: 15px;
+  font-weight: 700;
+  color: #7aa2ff;
+}
+
 /* Price */
 .priceRow {
   display: flex;

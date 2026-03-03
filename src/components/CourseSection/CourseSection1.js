@@ -37,14 +37,9 @@ export default function CourseSection1() {
           </div>
 
           <div className={styles.actions}>
-            <Link href="/course">
+            <Link href="#course-programs">
               <button className={styles.primaryBtn}>
                 Explore Programs
-              </button>
-            </Link>
-            <Link href="/contact-us">
-              <button className={styles.secondaryBtn}>
-                Download Curriculum
               </button>
             </Link>
           </div>

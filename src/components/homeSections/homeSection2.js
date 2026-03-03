@@ -41,7 +41,7 @@ export default function HomeSection2() {
               Book My Free Counseling Call
             </button>
           </Link>
-          <Link href="/course">
+          <Link href="/course#course-programs">
             <button className={styles.careerBtn}>
               Help Me Choose the Right Course
             </button>

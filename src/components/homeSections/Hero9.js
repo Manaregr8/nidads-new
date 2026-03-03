@@ -1,7 +1,7 @@
 "use client";
-import { useEffect, useRef } from 'react';
-import { useRouter } from 'next/navigation';
-import styles from './Hero9.module.css';
+import { useEffect, useRef, useState } from "react";
+import { useRouter } from "next/navigation";
+import styles from "./Hero9.module.css";
 
 const testimonials = [
   {
@@ -47,7 +47,7 @@ const testimonials = [
     role: "Data Science Trainer",
   },
   {
-    text: "The real‑world datasets we worked on prepared me for the kinds of problems companies actually solve.",
+    text: "The real-world datasets we worked on prepared me for the kinds of problems companies actually solve.",
     image: "https://randomuser.me/api/portraits/women/18.jpg",
     name: "Sneha Rao",
     role: "AI Researcher",
@@ -77,17 +77,16 @@ const TestimonialCard = ({ text, image, name, role }) => (
   </div>
 );
 
-const TestimonialsColumn = ({ testimonials, duration, className, speed }) => {
+const TestimonialsColumn = ({ testimonials, speed, isPaused }) => {
   const columnRef = useRef(null);
   const isMobile = useRef(false);
 
   useEffect(() => {
-    // Check if mobile on mount
-    isMobile.current = typeof window !== 'undefined' && window.innerWidth <= 768;
+    isMobile.current =
+      typeof window !== "undefined" && window.innerWidth <= 768;
   }, []);
 
   useEffect(() => {
-    // Disable animations on mobile for performance
     if (isMobile.current) return;
 
     const column = columnRef.current;
@@ -95,32 +94,28 @@ const TestimonialsColumn = ({ testimonials, duration, className, speed }) => {
 
     let animationId;
     let translateY = 0;
-    // Use custom speed or calculate from duration
-    const step = speed || (30 / duration); // pixels per frame
 
     const animate = () => {
-      translateY += step;
-      
-      // Reset when we've scrolled half way (since we duplicate content)
-      if (translateY >= column.scrollHeight / 2) {
-        translateY = 0;
+      if (!isPaused.current) {
+        translateY += speed;
+
+        if (translateY >= column.scrollHeight / 2) {
+          translateY = 0;
+        }
+
+        column.style.transform = `translateY(-${translateY}px)`;
       }
-      
-      column.style.transform = `translateY(-${translateY}px)`;
+
       animationId = requestAnimationFrame(animate);
     };
 
     animationId = requestAnimationFrame(animate);
 
-    return () => {
-      if (animationId) {
-        cancelAnimationFrame(animationId);
-      }
-    };
-  }, [duration, speed]);
+    return () => cancelAnimationFrame(animationId);
+  }, [speed, isPaused]);
 
   return (
-    <div className={`${styles.column} ${className || ''}`}>
+    <div className={styles.column}>
       <div ref={columnRef} className={styles.columnContent}>
         {[...Array(2)].map((_, index) => (
           <div key={index}>
@@ -134,16 +129,21 @@ const TestimonialsColumn = ({ testimonials, duration, className, speed }) => {
   );
 };
 
-
 const Hero9 = () => {
   const router = useRouter();
+  const isPaused = useRef(false);
+
   const handleKickstart = () => {
-    router.push('/course');
+    router.push("/course");
   };
+
   return (
-    <section className={styles.hero}>
+    <section
+      className={styles.hero}
+      onMouseEnter={() => (isPaused.current = true)}
+      onMouseLeave={() => (isPaused.current = false)}
+    >
       <div className={styles.container}>
-        {/* Header */}
         <div className={styles.header}>
           <div className={styles.badge}>
             <span className={styles.badgeText}>Testimonials</span>
@@ -154,49 +154,29 @@ const Hero9 = () => {
           </p>
         </div>
 
-        {/* Testimonials Grid */}
         <div className={styles.testimonialsWrapper}>
           <div className={styles.testimonialsGrid}>
-            <TestimonialsColumn 
-              testimonials={firstColumn} 
-              duration={15} 
-              speed={1.2} 
+            <TestimonialsColumn
+              testimonials={firstColumn}
+              speed={1.2}
+              isPaused={isPaused}
             />
-            <TestimonialsColumn 
-              testimonials={secondColumn} 
-              duration={19} 
-              speed={1.5} 
-              className={styles.hiddenMobile} 
+            <TestimonialsColumn
+              testimonials={secondColumn}
+              speed={1.5}
+              isPaused={isPaused}
             />
-            <TestimonialsColumn 
-              testimonials={thirdColumn} 
-              duration={17} 
-              speed={1.8} 
-              className={styles.hiddenTablet} 
+            <TestimonialsColumn
+              testimonials={thirdColumn}
+              speed={1.8}
+              isPaused={isPaused}
             />
           </div>
         </div>
 
-        {/* CTA Button */}
         <div className={styles.ctaWrapper}>
           <button className={styles.ctaButton} onClick={handleKickstart}>
-           <span className={styles.ctaText}>Kickstart Your Career</span>
-            <svg 
-              className={styles.ctaIcon} 
-              width="20" 
-              height="20" 
-              viewBox="0 0 20 20" 
-              fill="none" 
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path 
-                d="M4.16663 10H15.8333M15.8333 10L9.99996 4.16667M15.8333 10L9.99996 15.8333" 
-                stroke="currentColor" 
-                strokeWidth="2" 
-                strokeLinecap="round" 
-                strokeLinejoin="round"
-              />
-            </svg>
+            <span className={styles.ctaText}>Kickstart Your Career</span>
           </button>
         </div>
       </div>

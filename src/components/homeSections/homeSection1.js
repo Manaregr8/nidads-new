@@ -39,7 +39,7 @@ export default function Banner() {
             <span className={Style.mode}>Offline</span>
 </div>
           <div className={Style.courseActions}>
-            <Link href="/course">
+            <Link href="/course#course-programs">
               <button className={Style.exploreBtn}>Explore Our Courses</button>
             </Link>
             <Link href="/contact-us">
