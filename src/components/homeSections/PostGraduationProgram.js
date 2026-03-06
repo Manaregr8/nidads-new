@@ -41,7 +41,13 @@ export default function PostGraduationProgram() {
               </div>
             </div>
 
-            <button className={styles.ctaButton}>Learn More</button>
+            <a
+              href="tel:+919205436796"
+              className={styles.ctaButton}
+              aria-label="Call admissions"
+            >
+              Learn More
+            </a>
           </div>
         </div>
 

@@ -138,6 +138,9 @@
 }
 
 .ctaButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   padding: 14px 28px;
   background: linear-gradient(135deg, #38b6ff 0%, #2a8fcc 100%);
   border: none;
@@ -151,6 +154,7 @@
   z-index: 1;
   text-transform: uppercase;
   letter-spacing: 0.5px;
+  text-decoration: none;
 }
 
 .ctaButton:hover {

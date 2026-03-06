@@ -6,7 +6,6 @@ export default function CourseSection1() {
   return (
     <section className={styles.section}>
       <div className={styles.container}>
-
         {/* LEFT CONTENT */}
         <div className={styles.left}>
           <span className={styles.eyebrow}>DATA SCIENCE & AI</span>
