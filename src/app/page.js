@@ -10,6 +10,7 @@ import TechStackMarquee from "@/components/homeSections/TechStackMarquee";
 import Videostest from "@/components/homeSections/videostest";
 import CourseCardsSection from "@/components/homeSections/CourseCardsSection";
 import CourseComparison from "@/components/homeSections/CourseComparison";
+import PostGraduationProgram from "@/components/homeSections/PostGraduationProgram";
 
 
 export default function Home() {
@@ -23,6 +24,7 @@ export default function Home() {
 
     <CareerPrograms/>
 <CourseComparison/>
+  <PostGraduationProgram/>
   <GallerySection/>
   <Videostest/>
 
