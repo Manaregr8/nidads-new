@@ -27,10 +27,11 @@
   outline-offset: 2px;
 }
 
-.icon {
+.iconImg {
   width: 22px;
   height: 22px;
   display: block;
+  filter: invert(1);
 }
 
 @media (max-width: 480px) {
