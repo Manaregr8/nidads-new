@@ -4,7 +4,6 @@
 import CourseSection1 from "@/components/CourseSection/CourseSection1";
 import CourseSection2 from "@/components/CourseSection/CourseSection2";
 import CourseSection3 from "@/components/CourseSection/CourseSection3";
-import FloatingContactButtons from "@/components/FloatingContactButtons";
 
 export const metadata = {
   title: "Course",
@@ -17,7 +16,6 @@ export default function CoursePage() {
       <CourseSection2 />
       {/* <CourseSection3 /> */}
       {/* <Hero9 /> */}
-      <FloatingContactButtons phoneE164={"+919205436796"} />
     </main>
   );
 }

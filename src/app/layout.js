@@ -4,6 +4,7 @@ import "../styles/globals.css";
 import Navbar from "@/components/layout/navbar";
 import Footer from "@/components/layout/Footer";
 import GlobalEnquiryPopup from "@/components/GlobalEnquiryPopup";
+import FloatingContactButtons from "@/components/FloatingContactButtons";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -50,6 +51,7 @@ export default function RootLayout({ children }) {
         <Navbar/>
         {children}
         <Footer/>
+        <FloatingContactButtons phoneE164={"+919205436796"} />
         <GlobalEnquiryPopup />
       </body>
     </html>
