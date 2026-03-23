@@ -5,7 +5,7 @@ import styles from "./Hero9.module.css";
 
 const testimonials = [
   {
-    text: "The project-based training at NIDAD helped me build a portfolio that landed me a data analyst role within three months of graduation.",
+    text: "The project-based training at NIDADS helped me build a portfolio that landed me a data analyst role within three months of graduation.",
     image: "https://randomuser.me/api/portraits/men/11.jpg",
     name: "Amit Sharma",
     role: "Data Analyst",
@@ -41,7 +41,7 @@ const testimonials = [
     role: "Analytics Consultant",
   },
   {
-    text: "NIDAD’s campus environment made it easy to balance theory with hands-on practice every day.",
+    text: "NIDADS’ campus environment made it easy to balance theory with hands-on practice every day.",
     image: "https://randomuser.me/api/portraits/men/17.jpg",
     name: "Vikram Joshi",
     role: "Data Science Trainer",

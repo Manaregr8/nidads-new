@@ -14,7 +14,7 @@
 .eyebrow {
   font-size: 12px;
   letter-spacing: 0.2em;
-  color: #7aa2ff;
+  color: #38b6ff;
 }
 
 .title {
@@ -23,7 +23,7 @@
 }
 
 .title span {
-  color: #7aa2ff;
+  color: #38b6ff;
 }
 
 .subtitle {
@@ -312,7 +312,7 @@
 .newPrice {
   font-size: 15px;
   font-weight: 700;
-  color: #7aa2ff;
+  color: #38b6ff;
 }
 
 /* Price */
@@ -332,7 +332,7 @@
 .newPrice {
   font-size: 15px;
   font-weight: 700;
-  color: #7aa2ff;
+  color: #38b6ff;
 }
 
 /* Show more */

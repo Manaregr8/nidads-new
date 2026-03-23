@@ -16,7 +16,7 @@ export default function CourseSection1() {
           </h1>
 
           {/* <p className={styles.description}>
-            NIDAD delivers industry-aligned Data Science and AI programs focused on
+            NIDADS delivers industry-aligned Data Science and AI programs focused on
             real projects, real tools, and real hiring outcomes — not just theory.
           </p> */}
 

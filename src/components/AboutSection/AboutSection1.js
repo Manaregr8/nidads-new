@@ -13,7 +13,7 @@ export default function AboutSection1() {
       {/* Top Section */}
       <div className={styles.topGrid}>
         <div className={styles.left}>
-          <h2 className={styles.heading}>ABOUT<br />NIDAD</h2>
+          <h2 className={styles.heading}>ABOUT<br />NIDADS</h2>
           <div className={styles.leftDesc}>
             <div className={styles.detail}>
               National Institute of Data Analytics and Data Science
@@ -32,7 +32,7 @@ export default function AboutSection1() {
           <div className={styles.philosophyTextBlock}>
             <div className={styles.philosophyTitle}>Our Mission</div>
             <div className={styles.philosophyText}>
-              At NIDAD, we believe in practical, career-driven education.<br />
+              At NIDADS, we believe in practical, career-driven education.<br />
               Our goal is to transform learners into job-ready data professionals<br />
               through hands-on projects, industry tools, and expert guidance.
             </div>

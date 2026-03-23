@@ -19,10 +19,10 @@ export default function Footer() {
               className={styles.logo}
             />
             <p className={styles.tagline}>
-              National Institute of Design & Development
+              National Institute of Data Analytics & Data Science
             </p>
             <p className={styles.desc}>
-              Career-focused education in Data Science, AI, Design & Development.
+              Career-focused education in Data Analytics, Data Science, and AI.
               Learn with real projects, real mentors, and real outcomes.
             </p>
           </div>

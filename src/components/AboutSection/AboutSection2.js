@@ -13,7 +13,7 @@ export default function AboutSection2() {
               Built for the Data-Driven Generation
             </div>
             <div className={styles.subdesc}>
-              NIDAD was founded with a clear vision: to bridge the gap between academic learning and
+              NIDADS was founded with a clear vision: to bridge the gap between academic learning and
               real-world data careers. Our programs are designed around industry needs, combining
               analytics thinking, modern tools, and hands-on project experience to create professionals
               who are confident, capable, and job-ready from day one.
@@ -23,7 +23,7 @@ export default function AboutSection2() {
 
         {/* CENTER: Main Image */}
         <div className={styles.middle}>
-          <img src={mainImg} alt="NIDAD Learning Journey" className={styles.mainImg} width={320} height={320} />
+          <img src={mainImg} alt="NIDADS Learning Journey" className={styles.mainImg} width={320} height={320} />
         </div>
 
         {/* RIGHT SIDE: Section Heading */}

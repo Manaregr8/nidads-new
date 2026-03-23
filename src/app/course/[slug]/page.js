@@ -6,6 +6,7 @@ const PopupEnquiryForm = dynamic(() => import("@/components/PopupEnquiryForm.jsx
 import Link from "next/link";
 import { getCourseBySlug, courses } from "@/data/courses";
 import styles from "./courseDetail.module.css";
+import FloatingContactButtons from "@/components/FloatingContactButtons";
 
 export default function CourseDetailPage({ params }) {
   const { slug } = use(params);
@@ -395,6 +396,7 @@ export default function CourseDetailPage({ params }) {
         </div>
       </main>
 
+      <FloatingContactButtons phoneE164={"+919205436796"} />
       {/* FULL-WIDTH: MEET YOUR TRAINERS */}
       <section className={styles.fullWidthSection}>
         <div className={styles.fullWidthInner}>

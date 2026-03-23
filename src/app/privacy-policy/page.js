@@ -14,7 +14,7 @@ export default function PrivacyPolicyPage() {
           <p className={styles.updated}>Last updated: March 3, 2026</p>
 
           <p className={styles.lead}>
-            National Institute of Design & Development (NIDADS) respects your privacy.
+            National Institute of Data Analytics & Data Science (NIDADS) respects your privacy.
             This Privacy Policy explains what information we collect, how we use it,
             and the choices you have when using our website, enquiry forms, and course services.
           </p>

@@ -168,7 +168,7 @@ export default function CourseSection2() {
                 {/* Content */}
                 <div className={styles.cardBody}>
                   <h3>{course.title}</h3>
-                  <p className={styles.provider}>NIDAD Academy</p>
+                  <p className={styles.provider}>NIDADS Academy</p>
 
                   <div className={styles.metaRow}>
                     <span className={styles.rating}>★ {course.rating}</span>

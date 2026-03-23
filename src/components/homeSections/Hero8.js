@@ -8,8 +8,8 @@ const Hero8 = () => {
   const faqs = [
      {
       id: 1,
-      question: 'What kind of learning environment does NIDAD provide?',
-      answer: 'NIDAD offers a professional, industry-simulated learning environment focused on Data Analytics, Data Science, and Machine Learning. Students work with real datasets, live projects, industry tools, and guided workflows that mirror real corporate analytics teams.'
+      question: 'What kind of learning environment does NIDADS provide?',
+      answer: 'NIDADS offers a professional, industry-simulated learning environment focused on Data Analytics, Data Science, and Machine Learning. Students work with real datasets, live projects, industry tools, and guided workflows that mirror real corporate analytics teams.'
     },
     {
       id: 2,
@@ -18,7 +18,7 @@ const Hero8 = () => {
     },
     {
       id: 3,
-      question: 'What learning modes are available at NIDAD?',
+      question: 'What learning modes are available at NIDADS?',
       answer: 'We provide 100% online and Offline live instructor-led classes with recordings, along with flexible weekend batches. This allows students and working professionals to learn at their own pace without compromising quality.'
     },
     {

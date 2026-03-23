@@ -4,6 +4,7 @@
 import CourseSection1 from "@/components/CourseSection/CourseSection1";
 import CourseSection2 from "@/components/CourseSection/CourseSection2";
 import CourseSection3 from "@/components/CourseSection/CourseSection3";
+import FloatingContactButtons from "@/components/FloatingContactButtons";
 
 export const metadata = {
   title: "Course",
@@ -11,11 +12,12 @@ export const metadata = {
 
 export default function CoursePage() {
   return (
-    <main style={{ background: '#090d15' }}>
+    <main style={{ background: "#090d15", paddingTop: 40 }}>
       <CourseSection1 />
       <CourseSection2 />
       {/* <CourseSection3 /> */}
       {/* <Hero9 /> */}
+      <FloatingContactButtons phoneE164={"+919205436796"} />
     </main>
   );
 }
