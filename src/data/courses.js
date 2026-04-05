@@ -902,6 +902,120 @@ export const courses = [
         date: "2024-11-18"
       }
     ]
+  },
+  {
+    id: 10,
+    title: "Degree Program in Artificial Intelligence",
+    level: "degree",
+    slug: "degree-program-in-ai",
+    category: "artificial-intelligence",
+    duration: "3 Years",
+    mode: "Hybrid Learning",
+    rating: 4.9,
+    students: 1200,
+    price: "Contact for Fees",
+    monthlyPrice: "",
+    image: "/TensorFlow (1)/Diploma in Data Analytics & AI (12 Months) SQL.png",
+    description:
+      "Earn a UGC-approved university degree (DU SOL or Amity Online) combined with 300+ hours of NIDADS AI specialization. Weekly trips, annual expeditions, and social impact projects included.",
+    fullDescription:
+      "A 3-year undergraduate degree program in Artificial Intelligence combining a UGC-approved university degree with an exclusive NIDADS AI specialization. Choose DU SOL or Amity University Online as your degree institution. 6 semesters covering Python, ML, Deep Learning, NLP, MLOps, and a full industry internship.",
+    instructor: {
+      name: "Miss. Shagun",
+      title: "Lead Instructor, AI & Data Science",
+      bio: "PhD in AI with 15+ years of industry experience",
+      image: "/uploads/Shagun4-removebg-preview (1).png",
+      credentials: ["PhD in AI", "15+ Years Experience"]
+    },
+    topics: ["Python", "Machine Learning", "Deep Learning", "NLP", "MLOps", "Cloud AI"],
+    whatYouWillLearn: [
+      "Master Python and mathematics for AI",
+      "Build supervised and unsupervised ML models",
+      "Design and train deep neural networks",
+      "Develop NLP and computer vision applications",
+      "Deploy AI models with MLOps best practices",
+      "Complete a real industry internship"
+    ],
+    curriculum: [
+      { section: "Foundations of AI & Computing", lectures: [{ title: "Python Programming Foundations", duration: "30 hours" }, { title: "Mathematics for AI", duration: "25 hours" }] },
+      { section: "Data Structures & Statistics", lectures: [{ title: "Data Structures & Algorithms", duration: "28 hours" }, { title: "Statistics for ML", duration: "22 hours" }] },
+      { section: "Machine Learning Foundations", lectures: [{ title: "Supervised Learning", duration: "30 hours" }, { title: "Unsupervised Learning", duration: "20 hours" }] },
+      { section: "Deep Learning, Vision & NLP", lectures: [{ title: "Neural Networks", duration: "32 hours" }, { title: "Computer Vision", duration: "24 hours" }, { title: "NLP", duration: "24 hours" }] },
+      { section: "Advanced AI & Cloud", lectures: [{ title: "MLOps & Deployment", duration: "28 hours" }, { title: "Cloud AI Platforms", duration: "22 hours" }] },
+      { section: "Capstone & Internship", lectures: [{ title: "AI Product Capstone", duration: "60 hours" }, { title: "Industry Internship", duration: "8 weeks" }] }
+    ],
+    requirements: ["10+2 or equivalent", "Basic computer literacy", "Commitment to 3 years"],
+    targetAudience: ["School leavers starting a career in AI", "Working professionals seeking a degree", "Anyone passionate about Artificial Intelligence"],
+    includes: [
+      "UGC-approved university degree (DU SOL or Amity)",
+      "300+ hours of NIDADS AI specialization",
+      "Weekly learning trips",
+      "Annual out-of-station business expedition",
+      "Social impact projects",
+      "Student club memberships",
+      "Industry internship",
+      "Placement support"
+    ],
+    reviews: [
+      { name: "Arjun Sharma", rating: 5, comment: "Best decision of my career. Placed at Microsoft India before I even graduated.", date: "2024-12-01" },
+      { name: "Priya Gupta", rating: 5, comment: "The annual Bangalore trip and club activities added incredible value beyond just academics.", date: "2024-11-15" }
+    ]
+  },
+  {
+    id: 11,
+    title: "Post Graduation Program in Artificial Intelligence",
+    level: "post-graduation",
+    slug: "pg-program-in-ai",
+    category: "artificial-intelligence",
+    duration: "2 Years",
+    mode: "Hybrid Learning",
+    rating: 4.9,
+    students: 600,
+    price: "Contact for Fees",
+    monthlyPrice: "",
+    image: "/TensorFlow (1)/Advanced Certification in Data Science & AI (6 Months).png",
+    description:
+      "Advance from practitioner to expert. A 2-year postgraduate AI degree from DU SOL or Amity Online with advanced NIDADS curriculum covering GenAI, LLMs, and a publishable research thesis.",
+    fullDescription:
+      "A 2-year postgraduate program in Artificial Intelligence combining a UGC-approved master's degree with NIDADS' advanced AI curriculum. 4 semesters covering advanced ML, Generative AI, LLMs, Reinforcement Learning, and a publishable research thesis or industry dissertation.",
+    instructor: {
+      name: "Miss. Shagun",
+      title: "PG Program Director, AI Research",
+      bio: "PhD in AI with 15+ years of industry and research experience",
+      image: "/uploads/Shagun4-removebg-preview (1).png",
+      credentials: ["PhD in AI", "Published Researcher", "15+ Years Experience"]
+    },
+    topics: ["Advanced ML", "Generative AI", "LLMs", "Computer Vision", "Reinforcement Learning", "Research Methods"],
+    whatYouWillLearn: [
+      "Master advanced machine learning algorithms",
+      "Build and fine-tune Large Language Models",
+      "Develop Generative AI systems for production",
+      "Apply Reinforcement Learning to real problems",
+      "Conduct publishable AI research",
+      "Lead AI teams and projects"
+    ],
+    curriculum: [
+      { section: "Advanced Foundations & Research Methods", lectures: [{ title: "Advanced Python & Statistical Modelling", duration: "30 hours" }, { title: "Research Methodology", duration: "20 hours" }] },
+      { section: "Deep Learning, Vision & Language", lectures: [{ title: "Advanced Deep Learning", duration: "32 hours" }, { title: "NLP & LLMs", duration: "30 hours" }, { title: "Responsible AI", duration: "16 hours" }] },
+      { section: "Generative AI & Edge AI", lectures: [{ title: "Generative AI & Prompt Engineering", duration: "30 hours" }, { title: "Reinforcement Learning", duration: "24 hours" }, { title: "Edge AI & TinyML", duration: "20 hours" }] },
+      { section: "Research Thesis & Career Launch", lectures: [{ title: "Research Thesis / Industry Dissertation", duration: "120 hours" }, { title: "AI Entrepreneurship", duration: "16 hours" }] }
+    ],
+    requirements: ["Bachelor's degree in any discipline", "Basic programming knowledge preferred", "Commitment to 2 years"],
+    targetAudience: ["Graduates looking to specialise in AI at PG level", "Working professionals wanting a master's degree", "Researchers entering the AI field"],
+    includes: [
+      "UGC-approved PG degree (DU SOL or Amity)",
+      "Advanced NIDADS AI curriculum",
+      "Research thesis supervision",
+      "Weekly research excursions",
+      "Annual AI industry expedition",
+      "AI-for-Good social projects",
+      "PG club memberships",
+      "Senior placement support"
+    ],
+    reviews: [
+      { name: "Vikram Nair", rating: 5, comment: "My thesis became the foundation of my AI startup. NIDADS gave me depth, not just breadth.", date: "2024-12-05" },
+      { name: "Sneha Rao", rating: 5, comment: "The Bangalore expedition led to a direct interview call. I joined the company before graduating.", date: "2024-11-20" }
+    ]
   }
 ];
 

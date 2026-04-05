@@ -11,6 +11,7 @@ import Videostest from "@/components/homeSections/videostest";
 import CourseCardsSection from "@/components/homeSections/CourseCardsSection";
 import CourseComparison from "@/components/homeSections/CourseComparison";
 import PostGraduationProgram from "@/components/homeSections/PostGraduationProgram";
+import HomePGSection from "@/components/homeSections/HomePGSection";
 
 
 export default function Home() {
@@ -25,6 +26,7 @@ export default function Home() {
     <CareerPrograms/>
 <CourseComparison/>
   <PostGraduationProgram/>
+  <HomePGSection/>
   <GallerySection/>
   <Videostest/>
 

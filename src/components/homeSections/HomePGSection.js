@@ -1,16 +1,16 @@
 import Link from "next/link";
-import styles from "./PostGraduationProgram.module.css";
+import styles from "./HomePGSection.module.css";
 
-export default function DegreePrograms() {
+export default function HomePGSection() {
   const benefits = [
-    "UGC-Approved 3-Year Degree",
+    "UGC-Approved 2-Year PG Degree",
     "DU SOL or Amity University Online",
-    "300+ Hours of AI Specialization",
-    "Industry Expert Faculty",
-    "Weekly Learning Trips",
-    "Annual Business Expedition",
-    "Social Impact Projects",
-    "94% Placement Rate",
+    "Advanced Generative AI & LLMs",
+    "Senior Industry Mentorship",
+    "Research Thesis / Dissertation",
+    "Annual Tech Expedition",
+    "AI for Social Good Projects",
+    "96% Placement Rate",
   ];
 
   return (
@@ -18,43 +18,43 @@ export default function DegreePrograms() {
       <div className={styles.container}>
         {/* LEFT – HIGHLIGHT CARD */}
         <div className={styles.highlightBlock}>
-          <div className={styles.badge}>DEGREE PROGRAMS</div>
+          <div className={styles.badge}>POST GRADUATION PROGRAMS</div>
           <div className={styles.mainCard}>
             <h3 className={styles.programTitle}>
-              Degree Programs in Artificial Intelligence
+              Post Graduation Programs in Artificial Intelligence
             </h3>
             <p className={styles.subtitle}>
-              Earn a UGC-Approved University Degree Backed by Expert AI Training
+              Advance to Expert Level — Master&apos;s Degree Backed by Advanced AI Training
             </p>
 
             <div className={styles.infoGrid}>
               <div className={styles.infoItem}>
                 <span className={styles.label}>Duration</span>
-                <span className={styles.value}>3 Years</span>
+                <span className={styles.value}>2 Years</span>
               </div>
               <div className={styles.infoItem}>
                 <span className={styles.label}>Level</span>
-                <span className={styles.value}>Undergraduate</span>
+                <span className={styles.value}>Postgraduate</span>
               </div>
               <div className={styles.infoItem}>
                 <span className={styles.label}>Placement Rate</span>
-                <span className={styles.value}>94%+</span>
+                <span className={styles.value}>96%+</span>
               </div>
             </div>
 
             <Link
-              href="/course/degree-program-in-ai"
+              href="/course/pg-program-in-ai"
               className={styles.ctaButton}
-              aria-label="Explore Degree Programs"
+              aria-label="Explore Post Graduation Programs"
             >
-              Explore Degree Programs
+              Explore PG Programs
             </Link>
           </div>
         </div>
 
         {/* RIGHT – BENEFITS */}
         <div className={styles.benefitsBlock}>
-          <h3 className={styles.sectionTitle}>Program Highlights</h3>
+          <h3 className={styles.sectionTitle}>PG Program Highlights</h3>
           <ul className={styles.benefitsList}>
             {benefits.map((benefit, index) => (
               <li key={index} className={styles.benefitItem}>
@@ -65,11 +65,11 @@ export default function DegreePrograms() {
 
           <div className={styles.descriptionBox}>
             <p>
-              Our 3-year Degree Program in Artificial Intelligence combines a government-recognised
-              university degree from DU SOL or Amity Online with 300+ hours of exclusive NIDADS AI
-              specialization. Weekly learning trips, annual out-of-station business expeditions,
-              social impact projects, and vibrant student clubs make this a complete college
-              experience — not just a course.
+              Our 2-year Post Graduation Program in AI is built for professionals and graduates
+              who want to go deeper. Earn a UGC-approved master&apos;s degree from DU SOL or Amity
+              Online while mastering Generative AI, LLMs, and Reinforcement Learning. Weekly
+              research excursions, an annual AI industry expedition to Bangalore or Hyderabad,
+              and a publishable thesis set our PG students apart in every interview room.
             </p>
           </div>
         </div>
